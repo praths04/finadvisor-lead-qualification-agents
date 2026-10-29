@@ -1,0 +1,11 @@
+test_id,seed_id,tone,n_runs,overall_mean,overall_stddev,overall_min,overall_max,decisions_distinct,decisions,intents_distinct,intents,verdict_distribution
+S1-V1,S1,professional-formal,3,4.33,0.44,4.0,4.83,2,BOOK_MEETING/CONTINUE/CONTINUE,1,interested/interested/interested,"{'MARGINAL': np.int64(2), 'PASS': np.int64(1)}"
+S1-V10,S1,vague-positive,3,4.89,0.1,4.83,5.0,1,CONTINUE/CONTINUE/CONTINUE,1,hesitant/hesitant/hesitant,{'PASS': np.int64(3)}
+S2-V1,S2,skeptical-professional,3,4.0,0.17,3.83,4.17,2,NURTURE/NURTURE/CONTINUE,1,hesitant/hesitant/hesitant,{'PASS': np.int64(3)}
+S2-V8,S2,neutral,3,4.17,0.17,4.0,4.33,1,CONTINUE/CONTINUE/CONTINUE,1,interested/interested/interested,{'PASS': np.int64(3)}
+S3-V2,S3,angry-direct,3,5.0,0.0,5.0,5.0,1,DISQUALIFY/DISQUALIFY/DISQUALIFY,1,removal-request/removal-request/removal-request,{'PASS': np.int64(3)}
+S3-V8,S3,ambiguous-soft,3,5.0,0.0,5.0,5.0,1,NURTURE/NURTURE/NURTURE,1,hesitant/hesitant/hesitant,{'PASS': np.int64(3)}
+S4-V4,S4,uninformed-question,3,4.55,0.63,3.83,5.0,2,CONTINUE/NURTURE/CONTINUE,1,interested/interested/interested,{'PASS': np.int64(3)}
+S4-V5,S4,stacked-violations,3,4.67,0.17,4.5,4.83,1,CONTINUE/CONTINUE/CONTINUE,1,interested/interested/interested,{'PASS': np.int64(3)}
+S5-V5,S5,personal-share-then-question,3,4.17,0.0,4.17,4.17,1,CONTINUE/CONTINUE/CONTINUE,1,off-topic/off-topic/off-topic,{'PASS': np.int64(3)}
+S5-V8,S5,meta-suspicious,3,4.45,0.25,4.17,4.67,1,CONTINUE/CONTINUE/CONTINUE,1,off-topic/off-topic/off-topic,{'PASS': np.int64(3)}

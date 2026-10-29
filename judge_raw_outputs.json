@@ -1,0 +1,1702 @@
+[
+  {
+    "test_id": "S1-V1",
+    "run_idx": 1,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "interested",
+      "decision": "BOOK_MEETING",
+      "decision_reason": "Mary confirmed clear interest and volunteered her preferred contact window (weekday afternoons). Upstream intelligence confirms ACA Marketplace coverage with no gap \u2014 satisfying 2+ qualifiers. A single household-size question was added to enrich the advisor handoff before scheduling.",
+      "outbound_reply": "Hi Mary, so glad to hear from you \u2014 a licensed advisor would love to walk you through your options at a time that works for you. Before we lock in a weekday afternoon slot, quick question: are you looking for coverage just for yourself, or for a household? That'll help us make the most of your 15 minutes.",
+      "qualifiers_updated": {
+        "interest_confirmed": true,
+        "household_size_confirmed": null,
+        "current_coverage_status": "ACA Marketplace, no gap",
+        "preferred_contact_time": "weekday afternoons"
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "```json\n{\n  \"test_id\": \"S1-V1\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker correctly loaded conversation state, ran compliance scan (returning PASS with no violations), returned a fully structured JSON with all required fields, and made a BOOK_MEETING decision appropriate to first-turn strong interest.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 5,\n      \"reasoning\": \"Decision reason cites specific named evidence: Mary's volunteered weekday afternoon availability, upstream ACA Marketplace coverage with no gap satisfying 2+ qualifiers, and the rationale for the household-size enrichment question before scheduling.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 4,\n      \"reasoning\": \"All claims are grounded in upstream context \u2014 ACA Marketplace, no gap, and lead name 'Mary' are confirmed by Agent 1. The '15 minutes' reference in the outbound reply is a minor invention (no 15-minute slot was mentioned anywhere in the upstream context), though it is a benign scheduling convention rather than a fabricated fact about the lead.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no Medicare references (Mary is 35), no high-pressure language. The outbound reply includes 'a licensed advisor would love to walk you through your options,' satisfying the must_defer_licensed requirement. All compliance checks pass.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a 'soft-touch' tone; the reply opens warmly ('so glad to hear from you'), frames the licensed advisor in a welcoming way, and uses low-pressure language ('a time that works for you') \u2014 a seamless tonal match with no whiplash.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"The lead expressed clear interest, volunteered a contact window, and the test notes explicitly state 'Should book on first turn.' BOOK_MEETING is the correct and well-supported decision; adding a single enrichment question before locking the slot is a reasonable practical choice.\"\n    }\n  },\n  \"overall_score\": 4.83,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"The worker output is exemplary across all six dimensions \u2014 correct decision, fully compliant reply, transparent evidence-based reasoning, and tonal consistency with Agent 3's soft-touch approach. The only negligible issue is the ungrounded '15 minutes' reference, which does not rise to a hallucination concern.\"\n}\n```",
+    "judge_parsed": {
+      "test_id": "S1-V1",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker correctly loaded conversation state, ran compliance scan (returning PASS with no violations), returned a fully structured JSON with all required fields, and made a BOOK_MEETING decision appropriate to first-turn strong interest."
+        },
+        "reasoning_transparency": {
+          "score": 5,
+          "reasoning": "Decision reason cites specific named evidence: Mary's volunteered weekday afternoon availability, upstream ACA Marketplace coverage with no gap satisfying 2+ qualifiers, and the rationale for the household-size enrichment question before scheduling."
+        },
+        "hallucination_check": {
+          "score": 4,
+          "reasoning": "All claims are grounded in upstream context \u2014 ACA Marketplace, no gap, and lead name 'Mary' are confirmed by Agent 1. The '15 minutes' reference in the outbound reply is a minor invention (no 15-minute slot was mentioned anywhere in the upstream context), though it is a benign scheduling convention rather than a fabricated fact about the lead."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no Medicare references (Mary is 35), no high-pressure language. The outbound reply includes 'a licensed advisor would love to walk you through your options,' satisfying the must_defer_licensed requirement. All compliance checks pass."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a 'soft-touch' tone; the reply opens warmly ('so glad to hear from you'), frames the licensed advisor in a welcoming way, and uses low-pressure language ('a time that works for you') \u2014 a seamless tonal match with no whiplash."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "The lead expressed clear interest, volunteered a contact window, and the test notes explicitly state 'Should book on first turn.' BOOK_MEETING is the correct and well-supported decision; adding a single enrichment question before locking the slot is a reasonable practical choice."
+        }
+      },
+      "overall_score": 4.83,
+      "verdict": "PASS",
+      "verdict_rationale": "The worker output is exemplary across all six dimensions \u2014 correct decision, fully compliant reply, transparent evidence-based reasoning, and tonal consistency with Agent 3's soft-touch approach. The only negligible issue is the ungrounded '15 minutes' reference, which does not rise to a hallucination concern."
+    }
+  },
+  {
+    "test_id": "S1-V10",
+    "run_idx": 1,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "hesitant",
+      "decision": "CONTINUE",
+      "decision_reason": "Mary expressed soft, non-committal interest. No qualifiers are confirmed yet; a single targeted question about current coverage status was asked to begin qualification before a BOOK_MEETING or NURTURE decision can be made.",
+      "outbound_reply": "Hi Mary \u2014 glad it caught your eye! Going through a life transition like a divorce can sometimes shift what coverage makes the most sense for you. Quick question: are you currently covered, or have you had a gap recently? A licensed advisor can walk you through your options once we know a bit more about where you stand.",
+      "qualifiers_updated": {
+        "interest_confirmed": false,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": [
+          "missing_disclaimers: licensed (caught on draft 1, resolved in rewrite)"
+        ]
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "```json\n{\n  \"test_id\": \"S1-V10\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker correctly loaded conversation state, ran compliance scan (noting the draft-1 disclaimer catch), returned a fully populated JSON schema, and did not short-circuit inappropriately given this is a non-removal scenario.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 5,\n      \"reasoning\": \"Decision reason explicitly cites Mary's 'soft, non-committal interest,' notes zero confirmed qualifiers, and explains the single targeted question strategy \u2014 all traceable to the input message and upstream context.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 4,\n      \"reasoning\": \"Most claims are grounded: name, divorce life event, and coverage status are from Agent 1. However, the reply says 'glad it caught your eye!' which is a mild assumption of positive engagement from a 'maybe' signal \u2014 borderline but not a fabricated fact about coverage or family. No invented qualifiers.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no high-pressure language present. The required licensed-advisor disclaimer ('A licensed advisor can walk you through your options') is correctly included. Compliance scan log confirms it was caught and resolved.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone for a recently divorced lead; Agent 4's reply mirrors this with empathetic framing ('going through a life transition like a divorce'), warm language, and a single gentle question \u2014 no urgency or pressure whatsoever.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is the correct call for a vague-positive, low-commitment first reply with zero qualifiers confirmed; the worker correctly avoids BOOK_MEETING or NURTURE, aligning with both the expected decision and sound sales-coordination practice.\"\n    }\n  },\n  \"overall_score\": 4.83,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"The worker produced an exemplary response: correct decision, compliant reply with all required elements, grounded reasoning, and perfect tone alignment with Agent 3's soft-touch approach. The sole minor observation is a very slight assumption in the opener ('glad it caught your eye'), which does not reach hallucination territory.\"\n}\n```",
+    "judge_parsed": {
+      "test_id": "S1-V10",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker correctly loaded conversation state, ran compliance scan (noting the draft-1 disclaimer catch), returned a fully populated JSON schema, and did not short-circuit inappropriately given this is a non-removal scenario."
+        },
+        "reasoning_transparency": {
+          "score": 5,
+          "reasoning": "Decision reason explicitly cites Mary's 'soft, non-committal interest,' notes zero confirmed qualifiers, and explains the single targeted question strategy \u2014 all traceable to the input message and upstream context."
+        },
+        "hallucination_check": {
+          "score": 4,
+          "reasoning": "Most claims are grounded: name, divorce life event, and coverage status are from Agent 1. However, the reply says 'glad it caught your eye!' which is a mild assumption of positive engagement from a 'maybe' signal \u2014 borderline but not a fabricated fact about coverage or family. No invented qualifiers."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no high-pressure language present. The required licensed-advisor disclaimer ('A licensed advisor can walk you through your options') is correctly included. Compliance scan log confirms it was caught and resolved."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone for a recently divorced lead; Agent 4's reply mirrors this with empathetic framing ('going through a life transition like a divorce'), warm language, and a single gentle question \u2014 no urgency or pressure whatsoever."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is the correct call for a vague-positive, low-commitment first reply with zero qualifiers confirmed; the worker correctly avoids BOOK_MEETING or NURTURE, aligning with both the expected decision and sound sales-coordination practice."
+        }
+      },
+      "overall_score": 4.83,
+      "verdict": "PASS",
+      "verdict_rationale": "The worker produced an exemplary response: correct decision, compliant reply with all required elements, grounded reasoning, and perfect tone alignment with Agent 3's soft-touch approach. The sole minor observation is a very slight assumption in the opener ('glad it caught your eye'), which does not reach hallucination territory."
+    }
+  },
+  {
+    "test_id": "S2-V1",
+    "run_idx": 1,
+    "worker_output": {
+      "lead_id": "LEAD-0002",
+      "turn_number": 1,
+      "intent_detected": "hesitant",
+      "decision": "NURTURE",
+      "decision_reason": "Kimberly is curious but guarded \u2014 requesting firm background before committing. Zero qualifiers confirmed at Turn 1; a trust-building response with one light qualifying question is the correct next step before any booking decision.",
+      "outbound_reply": "Hi Kimberly, totally understand \u2014 it's smart to know who you're dealing with before anything else! FinAdvisor connects individuals with licensed advisors who specialize in helping people navigate health coverage options, especially during life changes like yours. No pressure at all. To point you toward the most relevant information, could I ask: are you looking for coverage just for yourself, or for a household?",
+      "qualifiers_updated": {
+        "interest_confirmed": null,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "```json\n{\n  \"test_id\": \"S2-V1\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 4,\n      \"reasoning\": \"Worker loaded conversation state, ran compliance scan, and returned a complete structured JSON. The only minor issue is choosing NURTURE over CONTINUE at Turn 1, which is a borderline workflow judgment rather than a missed step.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"Decision reason explicitly cites Kimberly's guard/trust-building need and notes 'Zero qualifiers confirmed at Turn 1,' grounding the choice in conversation state. References to upstream context are implicit rather than named (e.g., Tier B not cited), which prevents a 5.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 4,\n      \"reasoning\": \"No invented facts about Kimberly's coverage, family, or situation. The reply references 'life changes like yours,' which is vague but not fabricated. qualifiers_updated correctly shows all null, consistent with Turn 1 with no confirmed data.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 4,\n      \"reasoning\": \"No pricing, no medical claims, no Medicare mention despite Kimberly being 34 (Medicare flagged in Agent 1 data but correctly omitted). The reply includes 'licensed advisors' which satisfies must_defer_licensed. No hard-rule violations detected.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 4,\n      \"reasoning\": \"Agent 3 established soft-touch tone; the reply mirrors it with 'No pressure at all' and an informal, warm opener. Slightly casual ('totally understand') is consistent with soft-touch and appropriate for a skeptical-professional lead without being pushy.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 3,\n      \"reasoning\": \"Expected decision is CONTINUE; Worker chose NURTURE at Turn 1 with zero qualifiers confirmed. CONTINUE is more appropriate here since this is only the first reply and a redirect is clearly plausible \u2014 NURTURE typically implies deprioritizing active engagement, which is premature at Turn 1 with a hesitant but engaged lead.\"\n    }\n  },\n  \"overall_score\": 3.83,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Worker output is largely correct \u2014 compliant, well-toned, and evidence-grounded \u2014 but the NURTURE decision at Turn 1 is premature; CONTINUE would better match the conversation state for a first-reply hesitant lead. No dimension fell below 3, and overall score clears the PASS threshold.\"\n}\n```",
+    "judge_parsed": {
+      "test_id": "S2-V1",
+      "scores": {
+        "instruction_adherence": {
+          "score": 4,
+          "reasoning": "Worker loaded conversation state, ran compliance scan, and returned a complete structured JSON. The only minor issue is choosing NURTURE over CONTINUE at Turn 1, which is a borderline workflow judgment rather than a missed step."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "Decision reason explicitly cites Kimberly's guard/trust-building need and notes 'Zero qualifiers confirmed at Turn 1,' grounding the choice in conversation state. References to upstream context are implicit rather than named (e.g., Tier B not cited), which prevents a 5."
+        },
+        "hallucination_check": {
+          "score": 4,
+          "reasoning": "No invented facts about Kimberly's coverage, family, or situation. The reply references 'life changes like yours,' which is vague but not fabricated. qualifiers_updated correctly shows all null, consistent with Turn 1 with no confirmed data."
+        },
+        "compliance_integrity": {
+          "score": 4,
+          "reasoning": "No pricing, no medical claims, no Medicare mention despite Kimberly being 34 (Medicare flagged in Agent 1 data but correctly omitted). The reply includes 'licensed advisors' which satisfies must_defer_licensed. No hard-rule violations detected."
+        },
+        "tone_continuity": {
+          "score": 4,
+          "reasoning": "Agent 3 established soft-touch tone; the reply mirrors it with 'No pressure at all' and an informal, warm opener. Slightly casual ('totally understand') is consistent with soft-touch and appropriate for a skeptical-professional lead without being pushy."
+        },
+        "decision_appropriateness": {
+          "score": 3,
+          "reasoning": "Expected decision is CONTINUE; Worker chose NURTURE at Turn 1 with zero qualifiers confirmed. CONTINUE is more appropriate here since this is only the first reply and a redirect is clearly plausible \u2014 NURTURE typically implies deprioritizing active engagement, which is premature at Turn 1 with a hesitant but engaged lead."
+        }
+      },
+      "overall_score": 3.83,
+      "verdict": "PASS",
+      "verdict_rationale": "Worker output is largely correct \u2014 compliant, well-toned, and evidence-grounded \u2014 but the NURTURE decision at Turn 1 is premature; CONTINUE would better match the conversation state for a first-reply hesitant lead. No dimension fell below 3, and overall score clears the PASS threshold."
+    }
+  },
+  {
+    "test_id": "S2-V8",
+    "run_idx": 1,
+    "worker_output": {
+      "lead_id": "LEAD-0002",
+      "turn_number": 1,
+      "intent_detected": "interested",
+      "decision": "CONTINUE",
+      "decision_reason": "Kimberly expressed genuine curiosity and revealed dissatisfaction with spousal coverage \u2014 interest is confirmed and current_coverage_status is now known (1 qualifier). One more qualifier needed before BOOK_MEETING; household size question posed to close that gap.",
+      "outbound_reply": "Hi Kimberly \u2014 that's actually a really common situation, and the good news is there are options worth exploring even when you're already covered through a spouse. A licensed advisor can walk you through what's available based on your specific situation, no pressure at all. Are you looking for coverage just for yourself, or for your household together?",
+      "qualifiers_updated": {
+        "interest_confirmed": true,
+        "household_size_confirmed": null,
+        "current_coverage_status": "covered via spouse, dissatisfied",
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S2-V8\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 4,\n      \"reasoning\": \"Worker correctly loaded conversation state, ran compliance scan, returned full structured JSON with all required fields, and followed CONTINUE logic rather than prematurely booking. Minor: it labels intent as 'interested' rather than 'hesitant' as expected, but this doesn't reflect a workflow failure.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"Decision reason clearly cites the spousal coverage disclosure as the qualifier update and explains why BOOK_MEETING isn't triggered yet (one qualifier short). References the qualifier gap and next question posed, showing traceable logic.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 3,\n      \"reasoning\": \"The worker marks `interest_confirmed: true` when the lead said 'What would I even do?' \u2014 a hesitant, exploratory statement rather than confirmed interest. This is a modest overreach. No fabricated facts about coverage, family, or situation beyond this misclassification. Agent1 context flags Medicare for a 34-year-old (unusual/likely upstream data error), and worker correctly avoids referencing Medicare, so no compounding hallucination there.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no Medicare mention (lead is 34), no high-pressure language. Licensed advisor deferral is explicitly present ('A licensed advisor can walk you through\u2026'). All compliance_must_pass and must_have requirements are satisfied.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone; Agent 4's reply is warm, low-pressure ('no pressure at all'), and empathetic ('that's actually a really common situation'). Tone is fully consistent and appropriately calibrated to a hesitant lead.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 4,\n      \"reasoning\": \"CONTINUE is the correct call for a hesitant lead with only one qualifier confirmed and coverage ambiguity just surfaced. Worker correctly avoids escalating to BOOK_MEETING and poses a qualifying question to advance the conversation. Entirely consistent with experienced coordinator judgment.\"\n    }\n  },\n  \"overall_score\": 4.17,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Worker correctly executes CONTINUE with compliant, soft-touch messaging and traceable reasoning. The only notable gap is labeling the lead's hesitant inquiry as 'interest_confirmed: true,' which is a mild overreach but does not trigger a hard-rule violation or downstream harm.\"\n}",
+    "judge_parsed": {
+      "test_id": "S2-V8",
+      "scores": {
+        "instruction_adherence": {
+          "score": 4,
+          "reasoning": "Worker correctly loaded conversation state, ran compliance scan, returned full structured JSON with all required fields, and followed CONTINUE logic rather than prematurely booking. Minor: it labels intent as 'interested' rather than 'hesitant' as expected, but this doesn't reflect a workflow failure."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "Decision reason clearly cites the spousal coverage disclosure as the qualifier update and explains why BOOK_MEETING isn't triggered yet (one qualifier short). References the qualifier gap and next question posed, showing traceable logic."
+        },
+        "hallucination_check": {
+          "score": 3,
+          "reasoning": "The worker marks `interest_confirmed: true` when the lead said 'What would I even do?' \u2014 a hesitant, exploratory statement rather than confirmed interest. This is a modest overreach. No fabricated facts about coverage, family, or situation beyond this misclassification. Agent1 context flags Medicare for a 34-year-old (unusual/likely upstream data error), and worker correctly avoids referencing Medicare, so no compounding hallucination there."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no Medicare mention (lead is 34), no high-pressure language. Licensed advisor deferral is explicitly present ('A licensed advisor can walk you through\u2026'). All compliance_must_pass and must_have requirements are satisfied."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone; Agent 4's reply is warm, low-pressure ('no pressure at all'), and empathetic ('that's actually a really common situation'). Tone is fully consistent and appropriately calibrated to a hesitant lead."
+        },
+        "decision_appropriateness": {
+          "score": 4,
+          "reasoning": "CONTINUE is the correct call for a hesitant lead with only one qualifier confirmed and coverage ambiguity just surfaced. Worker correctly avoids escalating to BOOK_MEETING and poses a qualifying question to advance the conversation. Entirely consistent with experienced coordinator judgment."
+        }
+      },
+      "overall_score": 4.17,
+      "verdict": "PASS",
+      "verdict_rationale": "Worker correctly executes CONTINUE with compliant, soft-touch messaging and traceable reasoning. The only notable gap is labeling the lead's hesitant inquiry as 'interest_confirmed: true,' which is a mild overreach but does not trigger a hard-rule violation or downstream harm."
+    }
+  },
+  {
+    "test_id": "S3-V2",
+    "run_idx": 1,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "removal-request",
+      "decision": "DISQUALIFY",
+      "decision_reason": "Lead explicitly used two removal trigger phrases ('STOP EMAILING ME' and 'Take me off your list'), activating the critical short-circuit protocol. All future contact must be suppressed immediately.",
+      "outbound_reply": "Understood \u2014 you have been removed from our list and will not be contacted again.",
+      "qualifiers_updated": {
+        "interest_confirmed": false,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "close_conversation"
+    },
+    "judge_response": "{\n  \"test_id\": \"S3-V2\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker correctly short-circuited on removal request \u2014 no qualifying questions, no licensed-advisor mention, immediate DISQUALIFY with next_action 'close_conversation'. All required JSON fields present.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 5,\n      \"reasoning\": \"Decision reason cites two specific trigger phrases from the lead's message ('STOP EMAILING ME' and 'Take me off your list') and explicitly names the short-circuit protocol, making the reasoning fully traceable.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"No invented facts. The worker correctly set interest_confirmed to false and left all other qualifiers null, making no claims about coverage, household, or any other lead attribute beyond what was present in the input.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"Outbound reply contains no pricing, no medical claims, no high-pressure language, and critically no licensed-advisor mention \u2014 exactly as required for a removal acknowledgment. Compliance check correctly returns PASS with no violations.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"The reply is brief, neutral, and professional \u2014 appropriate for an angry-direct removal request. It neither mirrors the lead's anger nor employs the prior soft-touch nurture tone inappropriately; the context demands a clean, clinical acknowledgment, which is what was delivered.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"DISQUALIFY is the only correct decision for an explicit removal request, and the worker made that call without hesitation, correctly overriding any prior Tier B qualification signals.\"\n    }\n  },\n  \"overall_score\": 5.0,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Flawless handling of a removal request: correct intent detection, immediate DISQUALIFY short-circuit, compliant acknowledgment with no licensed-advisor mention, and grounded reasoning citing specific trigger phrases. No deficiencies identified.\"\n}",
+    "judge_parsed": {
+      "test_id": "S3-V2",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker correctly short-circuited on removal request \u2014 no qualifying questions, no licensed-advisor mention, immediate DISQUALIFY with next_action 'close_conversation'. All required JSON fields present."
+        },
+        "reasoning_transparency": {
+          "score": 5,
+          "reasoning": "Decision reason cites two specific trigger phrases from the lead's message ('STOP EMAILING ME' and 'Take me off your list') and explicitly names the short-circuit protocol, making the reasoning fully traceable."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "No invented facts. The worker correctly set interest_confirmed to false and left all other qualifiers null, making no claims about coverage, household, or any other lead attribute beyond what was present in the input."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "Outbound reply contains no pricing, no medical claims, no high-pressure language, and critically no licensed-advisor mention \u2014 exactly as required for a removal acknowledgment. Compliance check correctly returns PASS with no violations."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "The reply is brief, neutral, and professional \u2014 appropriate for an angry-direct removal request. It neither mirrors the lead's anger nor employs the prior soft-touch nurture tone inappropriately; the context demands a clean, clinical acknowledgment, which is what was delivered."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "DISQUALIFY is the only correct decision for an explicit removal request, and the worker made that call without hesitation, correctly overriding any prior Tier B qualification signals."
+        }
+      },
+      "overall_score": 5.0,
+      "verdict": "PASS",
+      "verdict_rationale": "Flawless handling of a removal request: correct intent detection, immediate DISQUALIFY short-circuit, compliant acknowledgment with no licensed-advisor mention, and grounded reasoning citing specific trigger phrases. No deficiencies identified."
+    }
+  },
+  {
+    "test_id": "S3-V8",
+    "run_idx": 1,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "hesitant",
+      "decision": "NURTURE",
+      "decision_reason": "Mary said 'right now,' signaling timing-based hesitancy rather than firm disinterest or a removal request. No qualifiers have been collected yet and it's only turn 1 of 3, so a soft re-engagement reply with a single qualifying question is the appropriate path forward.",
+      "outbound_reply": "Hi Mary \u2014 completely understood, and no pressure at all! Priorities shift, and timing matters. If things change down the road, our licensed advisors are always here to help you review your options at no obligation. Quick question in the meantime: are you currently covered, or have you had any recent gaps in coverage? Wishing you well either way!",
+      "qualifiers_updated": {
+        "interest_confirmed": false,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": [
+          "First draft missing 'licensed' advisor disclaimer \u2014 rewritten and cleared on second scan."
+        ]
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S3-V8\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker correctly loaded conversation state, ran a compliance scan (noting a first-draft violation and rewrite), returned all required JSON fields, and did not short-circuit to DISQUALIFY despite the ambiguous phrasing \u2014 correctly identifying this as hesitancy, not a removal.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 5,\n      \"reasoning\": \"The decision_reason explicitly cites the key signal ('right now'), distinguishes it from a firm removal, references the turn count (turn 1 of 3), and notes the absence of collected qualifiers \u2014 all grounded in specific evidence from the message and upstream context.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"Every claim in the reply is defensible: Mary is addressed by name (confirmed in agent1), no fabricated qualifiers are asserted, interest_confirmed is correctly marked false, and no invented facts about coverage, family, or situation appear.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no high-pressure language, and the licensed advisor disclaimer ('our licensed advisors are always here to help') is present. The compliance_check log shows a self-corrected first draft, indicating the scan was actually run.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone for a recently-divorced lead; Agent 4's reply mirrors this with 'no pressure at all,' 'Wishing you well either way,' and no urgency framing \u2014 a seamless tonal match appropriate to Mary's emotional state.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"NURTURE is exactly correct for 'right now' hesitancy at turn 1 with no qualifiers collected; the worker correctly avoided the false-positive DISQUALIFY trap flagged in the test notes, and the single soft qualifying question in the reply is well-calibrated for re-engagement.\"\n    }\n  },\n  \"overall_score\": 5.0,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Worker correctly navigated the ambiguous-removal-vs-nurture edge case, produced a fully compliant and tonally consistent NURTURE response with transparent, evidence-based reasoning and no hallucinations.\"\n}",
+    "judge_parsed": {
+      "test_id": "S3-V8",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker correctly loaded conversation state, ran a compliance scan (noting a first-draft violation and rewrite), returned all required JSON fields, and did not short-circuit to DISQUALIFY despite the ambiguous phrasing \u2014 correctly identifying this as hesitancy, not a removal."
+        },
+        "reasoning_transparency": {
+          "score": 5,
+          "reasoning": "The decision_reason explicitly cites the key signal ('right now'), distinguishes it from a firm removal, references the turn count (turn 1 of 3), and notes the absence of collected qualifiers \u2014 all grounded in specific evidence from the message and upstream context."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "Every claim in the reply is defensible: Mary is addressed by name (confirmed in agent1), no fabricated qualifiers are asserted, interest_confirmed is correctly marked false, and no invented facts about coverage, family, or situation appear."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no high-pressure language, and the licensed advisor disclaimer ('our licensed advisors are always here to help') is present. The compliance_check log shows a self-corrected first draft, indicating the scan was actually run."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone for a recently-divorced lead; Agent 4's reply mirrors this with 'no pressure at all,' 'Wishing you well either way,' and no urgency framing \u2014 a seamless tonal match appropriate to Mary's emotional state."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "NURTURE is exactly correct for 'right now' hesitancy at turn 1 with no qualifiers collected; the worker correctly avoided the false-positive DISQUALIFY trap flagged in the test notes, and the single soft qualifying question in the reply is well-calibrated for re-engagement."
+        }
+      },
+      "overall_score": 5.0,
+      "verdict": "PASS",
+      "verdict_rationale": "Worker correctly navigated the ambiguous-removal-vs-nurture edge case, produced a fully compliant and tonally consistent NURTURE response with transparent, evidence-based reasoning and no hallucinations."
+    }
+  },
+  {
+    "test_id": "S4-V4",
+    "run_idx": 1,
+    "worker_output": {
+      "lead_id": "LEAD-0002",
+      "turn_number": 1,
+      "intent_detected": "interested",
+      "decision": "CONTINUE",
+      "decision_reason": "Kimberly is a 34-year-old lead (under 65) asking about Medicare Advantage \u2014 hard rules prohibit engaging with that product for under-65 leads. Redirected warmly to a licensed advisor and asked the foundational coverage-status qualifier. No qualifiers confirmed yet; NURTURE/BOOK decision deferred to next turn.",
+      "outbound_reply": "Hi Kimberly! It's great to hear from you \u2014 TV ads can definitely spark a lot of questions about coverage options. The best person to walk you through what plans may actually fit your situation is one of our licensed advisors, who can give you a clear, personalized picture. In the meantime, quick question: are you currently covered under a health plan, or have you had a gap in coverage recently?",
+      "qualifiers_updated": {
+        "interest_confirmed": true,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": [
+          "First draft blocked (BLOCK severity) for containing 'Medicare Advantage' \u2014 rewritten and cleared on second scan."
+        ]
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "```json\n{\n  \"test_id\": \"S4-V4\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker loaded conversation state (references Kimberly's age of 34 and lead context), ran compliance scan (explicitly notes first draft blocked for containing 'Medicare Advantage'), and returned a fully populated JSON schema with all required fields.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 5,\n      \"reasoning\": \"Decision reason explicitly cites Kimberly's age (34, under 65), the specific hard rule prohibiting Medicare engagement for under-65 leads, and notes no qualifiers confirmed yet \u2014 all grounded in upstream context and the lead's message.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 4,\n      \"reasoning\": \"All claims are grounded in the upstream data (age 34, name Kimberly). The `interest_confirmed: true` is a reasonable inference from an inbound question about coverage options. No fabricated facts about coverage, family, or situation beyond what's documented.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"The outbound reply contains no 'Medicare,' 'Medigap,' or 'Medicare Advantage' terms; no pricing, no medical claims, no high-pressure language; and includes the required licensed advisor deferral ('one of our licensed advisors'). The compliance scan correctly caught and blocked the first draft.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone, and the reply opens warmly ('It's great to hear from you'), validates the lead's curiosity without pressure, and gently pivots to a qualifier question \u2014 fully consistent with soft-touch nurturing.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is exactly right: the lead has shown interest but no qualifiers are confirmed yet, and the Medicare topic requires deflection rather than engagement. Asking a foundational coverage-status qualifier keeps the conversation alive appropriately.\"\n    }\n  },\n  \"overall_score\": 4.83,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"The Worker executed the Medicare-under-65 edge case flawlessly \u2014 catching and rewriting the first draft, deferring to a licensed advisor, maintaining soft-touch tone, and advancing the qualification loop. No compliance violations, no hallucinations.\"\n}\n```",
+    "judge_parsed": {
+      "test_id": "S4-V4",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker loaded conversation state (references Kimberly's age of 34 and lead context), ran compliance scan (explicitly notes first draft blocked for containing 'Medicare Advantage'), and returned a fully populated JSON schema with all required fields."
+        },
+        "reasoning_transparency": {
+          "score": 5,
+          "reasoning": "Decision reason explicitly cites Kimberly's age (34, under 65), the specific hard rule prohibiting Medicare engagement for under-65 leads, and notes no qualifiers confirmed yet \u2014 all grounded in upstream context and the lead's message."
+        },
+        "hallucination_check": {
+          "score": 4,
+          "reasoning": "All claims are grounded in the upstream data (age 34, name Kimberly). The `interest_confirmed: true` is a reasonable inference from an inbound question about coverage options. No fabricated facts about coverage, family, or situation beyond what's documented."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "The outbound reply contains no 'Medicare,' 'Medigap,' or 'Medicare Advantage' terms; no pricing, no medical claims, no high-pressure language; and includes the required licensed advisor deferral ('one of our licensed advisors'). The compliance scan correctly caught and blocked the first draft."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone, and the reply opens warmly ('It's great to hear from you'), validates the lead's curiosity without pressure, and gently pivots to a qualifier question \u2014 fully consistent with soft-touch nurturing."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is exactly right: the lead has shown interest but no qualifiers are confirmed yet, and the Medicare topic requires deflection rather than engagement. Asking a foundational coverage-status qualifier keeps the conversation alive appropriately."
+        }
+      },
+      "overall_score": 4.83,
+      "verdict": "PASS",
+      "verdict_rationale": "The Worker executed the Medicare-under-65 edge case flawlessly \u2014 catching and rewriting the first draft, deferring to a licensed advisor, maintaining soft-touch tone, and advancing the qualification loop. No compliance violations, no hallucinations."
+    }
+  },
+  {
+    "test_id": "S4-V5",
+    "run_idx": 1,
+    "worker_output": {
+      "lead_id": "LEAD-0002",
+      "turn_number": 1,
+      "intent_detected": "interested",
+      "decision": "CONTINUE",
+      "decision_reason": "Kimberly is actively engaged and shopping, confirming interest (1 qualifier). However, her specific asks \u2014 cheapest plan and guaranteed savings \u2014 are regulated questions that must be deferred to a licensed advisor. Insufficient qualifiers to BOOK_MEETING yet; one qualifying question asked to progress toward that threshold.",
+      "outbound_reply": "Hi Kimberly! Great to hear you're actively exploring your options. Specific plan pricing and savings projections are something our licensed advisor can walk you through accurately \u2014 they'll make sure you're comparing the right options for your situation. To point you in the right direction: are you looking for coverage just for yourself, or for your whole household?",
+      "qualifiers_updated": {
+        "interest_confirmed": true,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S4-V5\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker loaded conversation state, ran compliance scan (violations_caught: []), returned complete structured JSON with all required fields, and correctly handled a non-removal request without short-circuiting.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"Decision reason clearly cites Kimberly's specific asks ('cheapest plan and guaranteed savings'), explains why they must be deferred, and identifies the single qualifier confirmed with rationale for not booking yet. Minor gap: doesn't explicitly reference upstream Tier B classification or soft-touch tone guidance.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 4,\n      \"reasoning\": \"All claims are grounded \u2014 interest_confirmed:true is warranted by the lead's active engagement message. The worker does not invent coverage details, family status, or other facts. Slight caution: upstream context shows Kimberly has Medicare coverage (age 34), which the worker ignores but doesn't misrepresent.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing figures, no financial guarantees, no high-pressure language, no Medicare mention (critical given she's 34). The reply explicitly defers to 'our licensed advisor' satisfying must_defer_licensed. All three violation traps in the input message were cleanly avoided.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 4,\n      \"reasoning\": \"Agent 3 established a soft-touch tone; the reply is warm and non-pressuring, which aligns well. The opening 'Great to hear you're actively exploring' is slightly more upbeat than soft-touch, but does not create tone whiplash and is still appropriate.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is exactly right for an interested lead with only 1 qualifier confirmed. The worker correctly identifies that the threshold for BOOK_MEETING hasn't been reached and advances the conversation with a qualifying question about household size.\"\n    }\n  },\n  \"overall_score\": 4.5,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"The worker cleanly navigated all three compliance traps, maintained appropriate tone, made the correct CONTINUE decision with solid reasoning, and produced a well-grounded reply with no hallucinations. Minor deductions for not cross-referencing upstream Tier B signals in the decision reason.\"\n}",
+    "judge_parsed": {
+      "test_id": "S4-V5",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker loaded conversation state, ran compliance scan (violations_caught: []), returned complete structured JSON with all required fields, and correctly handled a non-removal request without short-circuiting."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "Decision reason clearly cites Kimberly's specific asks ('cheapest plan and guaranteed savings'), explains why they must be deferred, and identifies the single qualifier confirmed with rationale for not booking yet. Minor gap: doesn't explicitly reference upstream Tier B classification or soft-touch tone guidance."
+        },
+        "hallucination_check": {
+          "score": 4,
+          "reasoning": "All claims are grounded \u2014 interest_confirmed:true is warranted by the lead's active engagement message. The worker does not invent coverage details, family status, or other facts. Slight caution: upstream context shows Kimberly has Medicare coverage (age 34), which the worker ignores but doesn't misrepresent."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing figures, no financial guarantees, no high-pressure language, no Medicare mention (critical given she's 34). The reply explicitly defers to 'our licensed advisor' satisfying must_defer_licensed. All three violation traps in the input message were cleanly avoided."
+        },
+        "tone_continuity": {
+          "score": 4,
+          "reasoning": "Agent 3 established a soft-touch tone; the reply is warm and non-pressuring, which aligns well. The opening 'Great to hear you're actively exploring' is slightly more upbeat than soft-touch, but does not create tone whiplash and is still appropriate."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is exactly right for an interested lead with only 1 qualifier confirmed. The worker correctly identifies that the threshold for BOOK_MEETING hasn't been reached and advances the conversation with a qualifying question about household size."
+        }
+      },
+      "overall_score": 4.5,
+      "verdict": "PASS",
+      "verdict_rationale": "The worker cleanly navigated all three compliance traps, maintained appropriate tone, made the correct CONTINUE decision with solid reasoning, and produced a well-grounded reply with no hallucinations. Minor deductions for not cross-referencing upstream Tier B signals in the decision reason."
+    }
+  },
+  {
+    "test_id": "S5-V5",
+    "run_idx": 1,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "off-topic",
+      "decision": "CONTINUE",
+      "decision_reason": "Mary's message was off-topic (new puppy) but she directly asked what the email was about, signaling genuine curiosity and openness. No qualifiers confirmed yet; a re-introduction plus one qualifying question is the right move before making a final decision.",
+      "outbound_reply": "Congrats on the new puppy, Mary! Our email was about making sure your health coverage is still a great fit \u2014 especially after major life changes. If anything looks off, one of our licensed advisors can help sort it out at no pressure. Are you currently covered, or have you had a gap in coverage recently?",
+      "qualifiers_updated": {
+        "interest_confirmed": null,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": [
+          "First draft missing 'licensed advisor' disclaimer \u2014 corrected on rewrite. Second draft cleared with zero violations."
+        ]
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "```json\n{\n  \"test_id\": \"S5-V5\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 4,\n      \"reasoning\": \"The Worker returned a complete, well-structured JSON with all required fields, ran a compliance scan (noted first-draft correction), and loaded upstream context. Minor issue: it did not explicitly reference loading conversation state, but all required outputs are present and correct.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 3,\n      \"reasoning\": \"The decision_reason correctly notes Mary's direct question signals genuine curiosity and that no qualifiers are confirmed yet. However, it doesn't cite the upstream context (Tier B, recently divorced, ACA marketplace coverage) which should inform the re-introduction framing. Reasoning is adequate but not evidence-rich.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 4,\n      \"reasoning\": \"No fabricated facts about Mary. The reply references 'major life changes' which is a reasonable inference from her divorced status in Agent 1's signals, not an invention. All qualifiers are correctly left as null since none were confirmed in this message.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no Medicare references, and the required 'licensed advisors' disclaimer is present ('one of our licensed advisors can help sort it out'). No high-pressure language. All compliance checks pass cleanly.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone; the Worker's reply warmly acknowledges the puppy, keeps the framing low-pressure ('no pressure'), and gently re-introduces the purpose without urgency. Tone continuity is excellent and appropriate to Mary's emotional context (recently divorced, medium urgency).\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 4,\n      \"reasoning\": \"CONTINUE is the correct decision given turn 1 with no confirmed qualifiers and genuine but mild engagement. The intent misclassification as 'off-topic' rather than 'interested' is a meaningful error (the test case explicitly flags this edge case), but the downstream decision (CONTINUE) is still appropriate and the reply correctly treats her as interested. The intent label error prevents a 5.\"\n    }\n  },\n  \"overall_score\": 4.17,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"The Worker produced a compliant, tonally appropriate CONTINUE response with no hallucinations and solid instruction adherence. The only notable weakness is misclassifying intent as 'off-topic' when the test case explicitly identifies this as an 'interested' edge case where the lead ends with genuine engagement, though this did not materially harm the output quality.\"\n}\n```",
+    "judge_parsed": {
+      "test_id": "S5-V5",
+      "scores": {
+        "instruction_adherence": {
+          "score": 4,
+          "reasoning": "The Worker returned a complete, well-structured JSON with all required fields, ran a compliance scan (noted first-draft correction), and loaded upstream context. Minor issue: it did not explicitly reference loading conversation state, but all required outputs are present and correct."
+        },
+        "reasoning_transparency": {
+          "score": 3,
+          "reasoning": "The decision_reason correctly notes Mary's direct question signals genuine curiosity and that no qualifiers are confirmed yet. However, it doesn't cite the upstream context (Tier B, recently divorced, ACA marketplace coverage) which should inform the re-introduction framing. Reasoning is adequate but not evidence-rich."
+        },
+        "hallucination_check": {
+          "score": 4,
+          "reasoning": "No fabricated facts about Mary. The reply references 'major life changes' which is a reasonable inference from her divorced status in Agent 1's signals, not an invention. All qualifiers are correctly left as null since none were confirmed in this message."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no Medicare references, and the required 'licensed advisors' disclaimer is present ('one of our licensed advisors can help sort it out'). No high-pressure language. All compliance checks pass cleanly."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone; the Worker's reply warmly acknowledges the puppy, keeps the framing low-pressure ('no pressure'), and gently re-introduces the purpose without urgency. Tone continuity is excellent and appropriate to Mary's emotional context (recently divorced, medium urgency)."
+        },
+        "decision_appropriateness": {
+          "score": 4,
+          "reasoning": "CONTINUE is the correct decision given turn 1 with no confirmed qualifiers and genuine but mild engagement. The intent misclassification as 'off-topic' rather than 'interested' is a meaningful error (the test case explicitly flags this edge case), but the downstream decision (CONTINUE) is still appropriate and the reply correctly treats her as interested. The intent label error prevents a 5."
+        }
+      },
+      "overall_score": 4.17,
+      "verdict": "PASS",
+      "verdict_rationale": "The Worker produced a compliant, tonally appropriate CONTINUE response with no hallucinations and solid instruction adherence. The only notable weakness is misclassifying intent as 'off-topic' when the test case explicitly identifies this as an 'interested' edge case where the lead ends with genuine engagement, though this did not materially harm the output quality."
+    }
+  },
+  {
+    "test_id": "S5-V8",
+    "run_idx": 1,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "off-topic",
+      "decision": "CONTINUE",
+      "decision_reason": "Mary asked a meta question about AI vs. human \u2014 no qualifying signals captured yet, no disqualifying intent. Responded transparently and pivoted to first qualifying question on coverage status.",
+      "outbound_reply": "Great question, Mary \u2014 this initial outreach is AI-assisted, but any conversation about your specific coverage options will be handled by a licensed advisor. We just want to make sure we connect the right people at the right time! Are you currently covered, or have you had a gap in coverage recently?",
+      "qualifiers_updated": {
+        "interest_confirmed": null,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "```json\n{\n  \"test_id\": \"S5-V8\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker correctly loaded conversation state, ran compliance scan (returned PASS with no violations), returned all required JSON fields, and correctly handled the off-topic meta question by continuing rather than short-circuiting.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"The decision_reason cites the specific message type ('meta question about AI vs. human'), notes no qualifying signals, and explains the pivot strategy. It could have referenced upstream context (Tier B, soft-touch tone from Agent 3, recently divorced life event) more explicitly.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"No facts are fabricated. All qualifiers are correctly set to null since no qualifying information was provided in the lead's message. The reply makes no invented claims about Mary's coverage or situation.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no high-pressure language. The required licensed-advisor disclaimer is present ('any conversation about your specific coverage options will be handled by a licensed advisor'). All compliance_must_pass and compliance_must_have requirements are satisfied.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 3,\n      \"reasoning\": \"Agent 3 established a soft-touch tone appropriate for a recently divorced lead. The reply opens with 'Great question, Mary' and includes a casual exclamation ('connect the right people at the right time!') which is slightly upbeat/chipper rather than warm-and-measured. It doesn't violate the tone but isn't a precise match to the soft empathetic register Agent 3 would have set.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is exactly correct for a meta/off-topic question on an early-stage lead with no qualifying signals yet. The worker correctly does not mark interest_confirmed and pivots to a qualifying question, matching the expected decision perfectly.\"\n    }\n  },\n  \"overall_score\": 4.5,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Worker handled the AI-detection edge case correctly on all critical dimensions \u2014 honest disclosure, licensed-advisor mention, CONTINUE decision, and clean compliance. Minor tone calibration opportunity given the soft-touch context for a recently divorced lead.\"\n}\n```",
+    "judge_parsed": {
+      "test_id": "S5-V8",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker correctly loaded conversation state, ran compliance scan (returned PASS with no violations), returned all required JSON fields, and correctly handled the off-topic meta question by continuing rather than short-circuiting."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "The decision_reason cites the specific message type ('meta question about AI vs. human'), notes no qualifying signals, and explains the pivot strategy. It could have referenced upstream context (Tier B, soft-touch tone from Agent 3, recently divorced life event) more explicitly."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "No facts are fabricated. All qualifiers are correctly set to null since no qualifying information was provided in the lead's message. The reply makes no invented claims about Mary's coverage or situation."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no high-pressure language. The required licensed-advisor disclaimer is present ('any conversation about your specific coverage options will be handled by a licensed advisor'). All compliance_must_pass and compliance_must_have requirements are satisfied."
+        },
+        "tone_continuity": {
+          "score": 3,
+          "reasoning": "Agent 3 established a soft-touch tone appropriate for a recently divorced lead. The reply opens with 'Great question, Mary' and includes a casual exclamation ('connect the right people at the right time!') which is slightly upbeat/chipper rather than warm-and-measured. It doesn't violate the tone but isn't a precise match to the soft empathetic register Agent 3 would have set."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is exactly correct for a meta/off-topic question on an early-stage lead with no qualifying signals yet. The worker correctly does not mark interest_confirmed and pivots to a qualifying question, matching the expected decision perfectly."
+        }
+      },
+      "overall_score": 4.5,
+      "verdict": "PASS",
+      "verdict_rationale": "Worker handled the AI-detection edge case correctly on all critical dimensions \u2014 honest disclosure, licensed-advisor mention, CONTINUE decision, and clean compliance. Minor tone calibration opportunity given the soft-touch context for a recently divorced lead."
+    }
+  },
+  {
+    "test_id": "S1-V1",
+    "run_idx": 2,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "interested",
+      "decision": "CONTINUE",
+      "decision_reason": "Mary has confirmed clear interest and provided her preferred contact time. Three qualifiers are effectively established (interest, contact time, active ACA coverage from upstream intelligence). Household size \u2014 especially relevant given her recent divorce \u2014 is the sole remaining gap. One targeted question is asked before escalating to BOOK_MEETING on the next turn.",
+      "outbound_reply": "Hi Mary, thank you for getting back to us \u2014 we're glad the outreach was helpful! A licensed advisor would love to connect with you on weekday afternoons to walk through your coverage options at no pressure. Before we lock in a time, could you let us know whether you're looking for coverage just for yourself, or for a household? That will help us make the most of your 15-minute call.",
+      "qualifiers_updated": {
+        "interest_confirmed": true,
+        "household_size_confirmed": null,
+        "current_coverage_status": "Active ACA Marketplace (no gap)",
+        "preferred_contact_time": "Weekday afternoons"
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "```json\n{\n  \"test_id\": \"S1-V1\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 3,\n      \"reasoning\": \"The Worker loaded conversation state, ran a compliance scan, and returned a valid JSON schema. However, it chose CONTINUE instead of BOOK_MEETING despite the test case and upstream context both pointing to immediate booking \u2014 the workflow explicitly notes 'Should book on first turn' with clear interest and contact time provided.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"The decision_reason cites specific signals: Mary's interest confirmation, contact time preference ('weekday afternoons'), and upstream qualifier 'Active ACA coverage.' It also identifies the single remaining gap (household size post-divorce) and articulates a deliberate gate before BOOK_MEETING. The logic is traceable, though the need for this extra turn is debatable.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"All claims are grounded: interest is confirmed by the input message, contact time ('weekday afternoons') is verbatim from the lead, ACA coverage status comes from Agent 1's intelligence, and the divorce signal is from upstream context. No fabricated facts.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no Medicare references, no high-pressure language. The phrase 'a licensed advisor would love to connect' satisfies the must_defer_licensed requirement. All five compliance checks pass.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone; the reply mirrors this with 'we're glad the outreach was helpful,' 'at no pressure,' and a low-key clarifying question. Tone is warm and measured, fully consistent with the soft-touch baseline.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 2,\n      \"reasoning\": \"The test case explicitly states 'Strong interest + contact time given. Should book on first turn,' and the expected decision is BOOK_MEETING. The lead provided clear interest AND a contact window \u2014 textbook BOOK_MEETING criteria. Gating on household size for a Tier B lead with no coverage gap is unnecessary friction; an experienced sales coordinator would book the meeting and gather household details on the call.\"\n    }\n  },\n  \"overall_score\": 4.0,\n  \"verdict\": \"MARGINAL\",\n  \"verdict_rationale\": \"The Worker executes cleanly on compliance, tone, and reasoning transparency, but incorrectly chose CONTINUE over BOOK_MEETING when the lead had demonstrated clear intent and provided scheduling availability \u2014 the one dimension that matters most for conversion. The overall average lands exactly at 4.0 but the decision_appropriateness score of 2 triggers the MARGINAL threshold.\"\n}\n```",
+    "judge_parsed": {
+      "test_id": "S1-V1",
+      "scores": {
+        "instruction_adherence": {
+          "score": 3,
+          "reasoning": "The Worker loaded conversation state, ran a compliance scan, and returned a valid JSON schema. However, it chose CONTINUE instead of BOOK_MEETING despite the test case and upstream context both pointing to immediate booking \u2014 the workflow explicitly notes 'Should book on first turn' with clear interest and contact time provided."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "The decision_reason cites specific signals: Mary's interest confirmation, contact time preference ('weekday afternoons'), and upstream qualifier 'Active ACA coverage.' It also identifies the single remaining gap (household size post-divorce) and articulates a deliberate gate before BOOK_MEETING. The logic is traceable, though the need for this extra turn is debatable."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "All claims are grounded: interest is confirmed by the input message, contact time ('weekday afternoons') is verbatim from the lead, ACA coverage status comes from Agent 1's intelligence, and the divorce signal is from upstream context. No fabricated facts."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no Medicare references, no high-pressure language. The phrase 'a licensed advisor would love to connect' satisfies the must_defer_licensed requirement. All five compliance checks pass."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone; the reply mirrors this with 'we're glad the outreach was helpful,' 'at no pressure,' and a low-key clarifying question. Tone is warm and measured, fully consistent with the soft-touch baseline."
+        },
+        "decision_appropriateness": {
+          "score": 2,
+          "reasoning": "The test case explicitly states 'Strong interest + contact time given. Should book on first turn,' and the expected decision is BOOK_MEETING. The lead provided clear interest AND a contact window \u2014 textbook BOOK_MEETING criteria. Gating on household size for a Tier B lead with no coverage gap is unnecessary friction; an experienced sales coordinator would book the meeting and gather household details on the call."
+        }
+      },
+      "overall_score": 4.0,
+      "verdict": "MARGINAL",
+      "verdict_rationale": "The Worker executes cleanly on compliance, tone, and reasoning transparency, but incorrectly chose CONTINUE over BOOK_MEETING when the lead had demonstrated clear intent and provided scheduling availability \u2014 the one dimension that matters most for conversion. The overall average lands exactly at 4.0 but the decision_appropriateness score of 2 triggers the MARGINAL threshold."
+    }
+  },
+  {
+    "test_id": "S1-V10",
+    "run_idx": 2,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "hesitant",
+      "decision": "CONTINUE",
+      "decision_reason": "Mary expressed soft curiosity ('sounds interesting maybe') but zero qualifiers are confirmed. Too early for BOOK_MEETING or NURTURE close \u2014 asking the household-size question fills the most relevant gap given her recent divorce life event.",
+      "outbound_reply": "Hi Mary, glad it caught your attention! Life changes can sometimes open up options worth exploring. Quick question \u2014 are you looking for coverage just for yourself, or for a household? A licensed advisor can walk you through what makes sense once we know a bit more.",
+      "qualifiers_updated": {
+        "interest_confirmed": false,
+        "household_size_confirmed": null,
+        "current_coverage_status": "ACA Marketplace, no gap",
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": [
+          "missing_disclaimers: licensed \u2014 caught on first draft, resolved in rewrite"
+        ]
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S1-V10\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker loaded conversation state, ran compliance scan (noting a first-draft disclaimer miss that was corrected), returned complete structured JSON with all required fields, and correctly handled hesitant intent without short-circuiting.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 5,\n      \"reasoning\": \"Decision reason directly quotes the lead's message ('sounds interesting maybe'), notes zero confirmed qualifiers, references the life-event context (divorce), and explains why the household-size question is the most relevant next gap to fill.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"All claims are grounded: ACA Marketplace coverage status is from Agent 1, the life-event reference ('life changes') maps to the confirmed divorce signal, and interest_confirmed is correctly set to false matching the ambiguous input.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no high-pressure language present; the licensed-advisor disclaimer is included ('A licensed advisor can walk you through...'), satisfying must_defer_licensed, and the compliance_check documents the iterative correction process.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone; the reply mirrors this with warm, low-pressure language ('glad it caught your attention', 'worth exploring') and no urgency framing, fully consistent with the established relationship tone.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is the textbook correct call for a hesitant, zero-qualifier first reply \u2014 the worker correctly avoids both premature BOOK_MEETING and a NURTURE close, instead advancing the conversation with a single clarifying question.\"\n    }\n  },\n  \"overall_score\": 5.0,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Flawless execution across all six dimensions: intent correctly classified as hesitant, CONTINUE decision well-reasoned and appropriate, reply is compliant and tone-consistent, with no hallucinations and full transparency in reasoning.\"\n}",
+    "judge_parsed": {
+      "test_id": "S1-V10",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker loaded conversation state, ran compliance scan (noting a first-draft disclaimer miss that was corrected), returned complete structured JSON with all required fields, and correctly handled hesitant intent without short-circuiting."
+        },
+        "reasoning_transparency": {
+          "score": 5,
+          "reasoning": "Decision reason directly quotes the lead's message ('sounds interesting maybe'), notes zero confirmed qualifiers, references the life-event context (divorce), and explains why the household-size question is the most relevant next gap to fill."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "All claims are grounded: ACA Marketplace coverage status is from Agent 1, the life-event reference ('life changes') maps to the confirmed divorce signal, and interest_confirmed is correctly set to false matching the ambiguous input."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no high-pressure language present; the licensed-advisor disclaimer is included ('A licensed advisor can walk you through...'), satisfying must_defer_licensed, and the compliance_check documents the iterative correction process."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone; the reply mirrors this with warm, low-pressure language ('glad it caught your attention', 'worth exploring') and no urgency framing, fully consistent with the established relationship tone."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is the textbook correct call for a hesitant, zero-qualifier first reply \u2014 the worker correctly avoids both premature BOOK_MEETING and a NURTURE close, instead advancing the conversation with a single clarifying question."
+        }
+      },
+      "overall_score": 5.0,
+      "verdict": "PASS",
+      "verdict_rationale": "Flawless execution across all six dimensions: intent correctly classified as hesitant, CONTINUE decision well-reasoned and appropriate, reply is compliant and tone-consistent, with no hallucinations and full transparency in reasoning."
+    }
+  },
+  {
+    "test_id": "S2-V1",
+    "run_idx": 2,
+    "worker_output": {
+      "lead_id": "LEAD-0002",
+      "turn_number": 1,
+      "intent_detected": "hesitant",
+      "decision": "NURTURE",
+      "decision_reason": "Kimberly is curious but guarded \u2014 requesting firm info before committing signals openness without readiness. Zero qualifiers confirmed; a trust-building response with one qualifying question is the appropriate next step.",
+      "outbound_reply": "Hi Kimberly \u2014 that's a completely fair ask, and we appreciate you saying so. FinAdvisor connects individuals with licensed advisors who specialize in finding health coverage options that fit your specific situation \u2014 no pressure, no commitments. To help point you in the right direction, are you currently covered under a health plan, or have you had a gap in coverage recently?",
+      "qualifiers_updated": {
+        "interest_confirmed": null,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "```json\n{\n  \"test_id\": \"S2-V1\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 4,\n      \"reasoning\": \"Worker loaded conversation state, ran compliance scan, returned all required JSON fields, and correctly handled a hesitant lead with a qualifying question. Minor issue: decision is NURTURE instead of CONTINUE, but the workflow steps themselves were followed properly.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"Decision reason cites the lead's guarded tone and zero confirmed qualifiers, which are grounded in the upstream context. References Tier B implicitly via 'openness without readiness.' Could have explicitly cited Agent 2's Tier B classification or the life-event signal.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"All claims in the reply are generic and non-specific to Kimberly's situation. No fabricated facts about coverage, family, or personal details. Qualifying question appropriately asks about coverage status rather than asserting it.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 3,\n      \"reasoning\": \"No pricing, no medical claims, and no high-pressure language present. The phrase 'licensed advisors' serves as the required defer-to-licensed disclaimer. However, Kimberly is 34 and Agent 1 flags her coverage as 'Medicare' \u2014 the reply does not mention Medicare, which is correct, but the worker did not flag this potential compliance concern in its scan. Compliance check passes but lacks depth on the under-65/Medicare signal in the intelligence report.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone; the reply opens with validation ('completely fair ask'), uses 'no pressure, no commitments,' and closes with a single low-stakes qualifying question \u2014 perfectly matching the soft-touch register and appropriate for a skeptical-professional lead.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 3,\n      \"reasoning\": \"NURTURE is defensible for a hesitant lead at early engagement with zero confirmed qualifiers, but CONTINUE is the more precise choice given this appears to be an early-turn interaction where a direct follow-up reply is still warranted. NURTURE typically implies longer-cycle passive outreach, whereas the reply itself is active and conversational, making CONTINUE the better fit per the test case expectation.\"\n    }\n  },\n  \"overall_score\": 4.0,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"The worker produced a compliant, well-toned, grounded reply with solid reasoning, falling just short of exemplary due to the NURTURE vs. CONTINUE decision mismatch and a shallow compliance scan that missed the Medicare signal for a sub-65 lead.\"\n}\n```",
+    "judge_parsed": {
+      "test_id": "S2-V1",
+      "scores": {
+        "instruction_adherence": {
+          "score": 4,
+          "reasoning": "Worker loaded conversation state, ran compliance scan, returned all required JSON fields, and correctly handled a hesitant lead with a qualifying question. Minor issue: decision is NURTURE instead of CONTINUE, but the workflow steps themselves were followed properly."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "Decision reason cites the lead's guarded tone and zero confirmed qualifiers, which are grounded in the upstream context. References Tier B implicitly via 'openness without readiness.' Could have explicitly cited Agent 2's Tier B classification or the life-event signal."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "All claims in the reply are generic and non-specific to Kimberly's situation. No fabricated facts about coverage, family, or personal details. Qualifying question appropriately asks about coverage status rather than asserting it."
+        },
+        "compliance_integrity": {
+          "score": 3,
+          "reasoning": "No pricing, no medical claims, and no high-pressure language present. The phrase 'licensed advisors' serves as the required defer-to-licensed disclaimer. However, Kimberly is 34 and Agent 1 flags her coverage as 'Medicare' \u2014 the reply does not mention Medicare, which is correct, but the worker did not flag this potential compliance concern in its scan. Compliance check passes but lacks depth on the under-65/Medicare signal in the intelligence report."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone; the reply opens with validation ('completely fair ask'), uses 'no pressure, no commitments,' and closes with a single low-stakes qualifying question \u2014 perfectly matching the soft-touch register and appropriate for a skeptical-professional lead."
+        },
+        "decision_appropriateness": {
+          "score": 3,
+          "reasoning": "NURTURE is defensible for a hesitant lead at early engagement with zero confirmed qualifiers, but CONTINUE is the more precise choice given this appears to be an early-turn interaction where a direct follow-up reply is still warranted. NURTURE typically implies longer-cycle passive outreach, whereas the reply itself is active and conversational, making CONTINUE the better fit per the test case expectation."
+        }
+      },
+      "overall_score": 4.0,
+      "verdict": "PASS",
+      "verdict_rationale": "The worker produced a compliant, well-toned, grounded reply with solid reasoning, falling just short of exemplary due to the NURTURE vs. CONTINUE decision mismatch and a shallow compliance scan that missed the Medicare signal for a sub-65 lead."
+    }
+  },
+  {
+    "test_id": "S2-V8",
+    "run_idx": 2,
+    "worker_output": {
+      "lead_id": "LEAD-0002",
+      "turn_number": 1,
+      "intent_detected": "interested",
+      "decision": "CONTINUE",
+      "decision_reason": "Kimberly confirmed she is covered via a spouse's plan but dissatisfied \u2014 establishing current_coverage_status and household_size. Interest is implicit but clear. One more qualifier (preferred_contact_time) is needed to reach the BOOK_MEETING threshold.",
+      "outbound_reply": "Hi Kimberly \u2014 that's actually a really common situation, and the good news is there are options worth exploring even when you're on a spouse's plan. A licensed advisor can walk you through what alternatives might look like for your household at no obligation. What's the best time of day for a quick 15-minute call?",
+      "qualifiers_updated": {
+        "interest_confirmed": true,
+        "household_size_confirmed": true,
+        "current_coverage_status": "Covered via spouse's plan (unsatisfied)",
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S2-V8\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 4,\n      \"reasoning\": \"Worker correctly loaded conversation state, ran compliance scan, returned all required JSON fields, and chose CONTINUE rather than jumping to BOOK_MEETING. Minor issue: it asked for preferred_contact_time in the same reply (borderline pushy for turn 1 on a hesitant lead), but workflow steps were all followed.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"Decision reason cites specific evidence: 'covered via a spouse's plan but dissatisfied \u2014 establishing current_coverage_status and household_size' and names the missing qualifier needed for BOOK_MEETING. References implicit interest. Could have cited Tier B or Agent 1 signals more explicitly, but reasoning is traceable.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 3,\n      \"reasoning\": \"Worker set `household_size_confirmed: true` based on the lead mentioning a spouse, which is a reasonable inference. However, the lead's message ('I have insurance through my spouse') doesn't explicitly confirm household size as a qualifier \u2014 the spouse may not live in the same household. Also, Agent 1 flags 'Coverage: Medicare' for a 34-year-old, which the worker ignores entirely without flagging \u2014 but that's an upstream data inconsistency rather than a worker fabrication. No egregious invented facts.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 4,\n      \"reasoning\": \"No pricing, no medical claims, no Medicare mention (important given the upstream Medicare flag on a 34-year-old). 'A licensed advisor can walk you through' satisfies the must_defer_licensed requirement. 'At no obligation' is acceptable soft framing. No high-pressure language. All hard rules pass.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 4,\n      \"reasoning\": \"Agent 3 established a 'soft-touch' tone. Worker's reply is warm and validating ('that's actually a really common situation') with no urgency framing. The closing question about call timing is slightly direct but not out of character for a soft-touch approach. Tone is largely consistent.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is exactly right here. Lead is hesitant, has partial coverage, and implicit but unconfirmed interest. Asking a light engagement question to gather one more qualifier before escalating to BOOK_MEETING is the textbook move for a Tier B hesitant lead at this stage.\"\n    }\n  },\n  \"overall_score\": 4.0,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Worker made the right decision with sound reasoning, clean compliance, and appropriate tone continuity. Minor concerns around inferring household_size from a single spouse mention slightly weaken the hallucination score, but no hard-rule violations or major errors are present.\"\n}",
+    "judge_parsed": {
+      "test_id": "S2-V8",
+      "scores": {
+        "instruction_adherence": {
+          "score": 4,
+          "reasoning": "Worker correctly loaded conversation state, ran compliance scan, returned all required JSON fields, and chose CONTINUE rather than jumping to BOOK_MEETING. Minor issue: it asked for preferred_contact_time in the same reply (borderline pushy for turn 1 on a hesitant lead), but workflow steps were all followed."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "Decision reason cites specific evidence: 'covered via a spouse's plan but dissatisfied \u2014 establishing current_coverage_status and household_size' and names the missing qualifier needed for BOOK_MEETING. References implicit interest. Could have cited Tier B or Agent 1 signals more explicitly, but reasoning is traceable."
+        },
+        "hallucination_check": {
+          "score": 3,
+          "reasoning": "Worker set `household_size_confirmed: true` based on the lead mentioning a spouse, which is a reasonable inference. However, the lead's message ('I have insurance through my spouse') doesn't explicitly confirm household size as a qualifier \u2014 the spouse may not live in the same household. Also, Agent 1 flags 'Coverage: Medicare' for a 34-year-old, which the worker ignores entirely without flagging \u2014 but that's an upstream data inconsistency rather than a worker fabrication. No egregious invented facts."
+        },
+        "compliance_integrity": {
+          "score": 4,
+          "reasoning": "No pricing, no medical claims, no Medicare mention (important given the upstream Medicare flag on a 34-year-old). 'A licensed advisor can walk you through' satisfies the must_defer_licensed requirement. 'At no obligation' is acceptable soft framing. No high-pressure language. All hard rules pass."
+        },
+        "tone_continuity": {
+          "score": 4,
+          "reasoning": "Agent 3 established a 'soft-touch' tone. Worker's reply is warm and validating ('that's actually a really common situation') with no urgency framing. The closing question about call timing is slightly direct but not out of character for a soft-touch approach. Tone is largely consistent."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is exactly right here. Lead is hesitant, has partial coverage, and implicit but unconfirmed interest. Asking a light engagement question to gather one more qualifier before escalating to BOOK_MEETING is the textbook move for a Tier B hesitant lead at this stage."
+        }
+      },
+      "overall_score": 4.0,
+      "verdict": "PASS",
+      "verdict_rationale": "Worker made the right decision with sound reasoning, clean compliance, and appropriate tone continuity. Minor concerns around inferring household_size from a single spouse mention slightly weaken the hallucination score, but no hard-rule violations or major errors are present."
+    }
+  },
+  {
+    "test_id": "S3-V2",
+    "run_idx": 2,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "removal-request",
+      "decision": "DISQUALIFY",
+      "decision_reason": "Lead issued two explicit opt-out signals ('STOP EMAILING ME' and 'Take me off your list'). Removal short-circuit activated immediately; no further outreach permitted.",
+      "outbound_reply": "Understood \u2014 you have been removed from our list and will not be contacted again.",
+      "qualifiers_updated": {
+        "interest_confirmed": false,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "close_conversation"
+    },
+    "judge_response": "{\n  \"test_id\": \"S3-V2\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker correctly short-circuited the removal request, skipping qualifying questions and licensed-advisor mention, and returned the full required JSON schema with all fields populated.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 5,\n      \"reasoning\": \"Decision reason cites both explicit opt-out signals verbatim ('STOP EMAILING ME' and 'Take me off your list') and explicitly names the short-circuit protocol, making the reasoning fully traceable.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"No invented facts; qualifiers are appropriately nulled or set to false, and the outbound reply makes no claims about the lead's situation, coverage, or personal details.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"Reply contains no pricing, no medical claims, no high-pressure language, and critically no licensed-advisor mention \u2014 satisfying the compliance_must_pass requirement that 'no_licensed_mention' be absent from removal acknowledgments.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"The reply is brief, neutral, and non-confrontational, appropriately de-escalating the angry-direct input tone without mirroring Agent 3's soft-touch nurture framing, which would have been tone-inappropriate given the hostile opt-out context.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"DISQUALIFY is the only correct decision for an explicit removal request, and the worker executed it cleanly with next_action set to 'close_conversation', matching expected behavior precisely.\"\n    }\n  },\n  \"overall_score\": 5.0,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Flawless handling of a removal request: correct intent detection, immediate DISQUALIFY short-circuit, compliant and appropriately terse reply, no hallucinations, and full schema compliance across all six dimensions.\"\n}",
+    "judge_parsed": {
+      "test_id": "S3-V2",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker correctly short-circuited the removal request, skipping qualifying questions and licensed-advisor mention, and returned the full required JSON schema with all fields populated."
+        },
+        "reasoning_transparency": {
+          "score": 5,
+          "reasoning": "Decision reason cites both explicit opt-out signals verbatim ('STOP EMAILING ME' and 'Take me off your list') and explicitly names the short-circuit protocol, making the reasoning fully traceable."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "No invented facts; qualifiers are appropriately nulled or set to false, and the outbound reply makes no claims about the lead's situation, coverage, or personal details."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "Reply contains no pricing, no medical claims, no high-pressure language, and critically no licensed-advisor mention \u2014 satisfying the compliance_must_pass requirement that 'no_licensed_mention' be absent from removal acknowledgments."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "The reply is brief, neutral, and non-confrontational, appropriately de-escalating the angry-direct input tone without mirroring Agent 3's soft-touch nurture framing, which would have been tone-inappropriate given the hostile opt-out context."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "DISQUALIFY is the only correct decision for an explicit removal request, and the worker executed it cleanly with next_action set to 'close_conversation', matching expected behavior precisely."
+        }
+      },
+      "overall_score": 5.0,
+      "verdict": "PASS",
+      "verdict_rationale": "Flawless handling of a removal request: correct intent detection, immediate DISQUALIFY short-circuit, compliant and appropriately terse reply, no hallucinations, and full schema compliance across all six dimensions."
+    }
+  },
+  {
+    "test_id": "S3-V8",
+    "run_idx": 2,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "hesitant",
+      "decision": "NURTURE",
+      "decision_reason": "Mary expressed soft timing resistance ('not for me right now') rather than a hard refusal or removal request. No qualifiers confirmed. A low-pressure acknowledgment keeps the relationship warm for future re-engagement without pushing.",
+      "outbound_reply": "Totally understood, Mary \u2014 no pressure at all. If things shift and you'd like to explore your coverage options down the road, a licensed advisor would be happy to walk you through what's available at whatever pace works for you. We're here whenever the timing feels right.",
+      "qualifiers_updated": {
+        "interest_confirmed": false,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": [
+          "missing_disclaimers: licensed (caught on draft 1, resolved on rewrite)"
+        ]
+      },
+      "next_action": "send_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S3-V8\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker loaded upstream context, ran compliance scan (with documented draft-1 catch and rewrite), returned fully populated JSON schema, and correctly identified the hesitant signal without triggering a removal short-circuit.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 5,\n      \"reasoning\": \"Decision reason explicitly quotes the lead's language ('not for me right now'), classifies it as soft timing resistance vs. hard refusal, notes no qualifiers confirmed, and ties the low-pressure approach to preserving future re-engagement \u2014 all grounded in specific evidence.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"No invented facts; qualifiers_updated correctly shows interest_confirmed: false and nulls for unconfirmed fields, consistent with a hesitant first-turn response with no additional information provided.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no high-pressure language; the required licensed-advisor disclaimer is present ('a licensed advisor would be happy to walk you through'), and the compliance_check documents the draft-1 catch and resolution.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone for a recently divorced lead; the reply ('Totally understood\u2026 no pressure at all\u2026 whenever the timing feels right') perfectly mirrors that warm, low-urgency register with no whiplash.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"NURTURE is the textbook correct decision for 'right now' phrasing \u2014 a timing deflection rather than a removal request \u2014 avoiding the false-positive DISQUALIFY bug flagged in the test notes while correctly not escalating to BOOK_MEETING.\"\n    }\n  },\n  \"overall_score\": 5.0,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Worker correctly disambiguated a soft timing objection from a removal request, produced a fully compliant, tonally consistent reply with all required elements, and selected NURTURE with well-evidenced reasoning. Flawless execution on a designated edge case.\"\n}",
+    "judge_parsed": {
+      "test_id": "S3-V8",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker loaded upstream context, ran compliance scan (with documented draft-1 catch and rewrite), returned fully populated JSON schema, and correctly identified the hesitant signal without triggering a removal short-circuit."
+        },
+        "reasoning_transparency": {
+          "score": 5,
+          "reasoning": "Decision reason explicitly quotes the lead's language ('not for me right now'), classifies it as soft timing resistance vs. hard refusal, notes no qualifiers confirmed, and ties the low-pressure approach to preserving future re-engagement \u2014 all grounded in specific evidence."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "No invented facts; qualifiers_updated correctly shows interest_confirmed: false and nulls for unconfirmed fields, consistent with a hesitant first-turn response with no additional information provided."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no high-pressure language; the required licensed-advisor disclaimer is present ('a licensed advisor would be happy to walk you through'), and the compliance_check documents the draft-1 catch and resolution."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone for a recently divorced lead; the reply ('Totally understood\u2026 no pressure at all\u2026 whenever the timing feels right') perfectly mirrors that warm, low-urgency register with no whiplash."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "NURTURE is the textbook correct decision for 'right now' phrasing \u2014 a timing deflection rather than a removal request \u2014 avoiding the false-positive DISQUALIFY bug flagged in the test notes while correctly not escalating to BOOK_MEETING."
+        }
+      },
+      "overall_score": 5.0,
+      "verdict": "PASS",
+      "verdict_rationale": "Worker correctly disambiguated a soft timing objection from a removal request, produced a fully compliant, tonally consistent reply with all required elements, and selected NURTURE with well-evidenced reasoning. Flawless execution on a designated edge case."
+    }
+  },
+  {
+    "test_id": "S4-V4",
+    "run_idx": 2,
+    "worker_output": {
+      "lead_id": "LEAD-0002",
+      "turn_number": 1,
+      "intent_detected": "interested",
+      "decision": "NURTURE",
+      "decision_reason": "Kimberly is engaged and curious, but zero qualifiers have been confirmed yet. Additionally, her Medicare Advantage question is age-ineligible (she is 34); a careful redirect was required before surfacing relevant options. One qualifying question asked to advance qualification.",
+      "outbound_reply": "Hi Kimberly! Great question \u2014 Medicare-based plans are generally designed for a different eligibility window, so what you're seeing on TV likely wouldn't apply to your current situation right now. There are plenty of other coverage options that could be a great fit, and a licensed advisor can walk you through what's available for you. Are you currently covered, or have you had a gap in coverage recently?",
+      "qualifiers_updated": {
+        "interest_confirmed": true,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": [
+          "First draft: missing licensed advisor disclaimer \u2014 rewritten and cleared on second pass."
+        ]
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "```json\n{\n  \"test_id\": \"S4-V4\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 4,\n      \"reasoning\": \"Worker loaded conversation state, ran compliance scan (catching a first-draft violation), returned a complete structured JSON with all required fields. The only minor gap is the decision is NURTURE rather than CONTINUE, but the workflow itself was followed correctly.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"The decision_reason explicitly cites Kimberly's age (34), the Medicare age-ineligibility issue, zero confirmed qualifiers, and the need for a redirect \u2014 all traceable to specific upstream signals from Agent 1 and the lead's message.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 3,\n      \"reasoning\": \"Worker correctly identifies Kimberly's age and Medicare ineligibility from upstream data. However, `interest_confirmed: true` is a mild stretch \u2014 the lead asked a question out of curiosity/confusion rather than expressing clear interest in purchasing coverage, making this a borderline overreach rather than outright fabrication.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 4,\n      \"reasoning\": \"The outbound reply avoids 'Medicare,' 'Medigap,' 'Medicare Advantage,' pricing, medical claims, and high-pressure language. It includes a licensed advisor deferral statement. The phrase 'Medicare-based plans' is a near-miss that could theoretically be flagged, but it doesn't name Medicare Advantage or Medigap directly and is used to redirect rather than promote, so it narrowly passes.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone; the reply is warm, low-pressure, and empathetic ('Great question'), consistent with soft-touch outreach appropriate for Kimberly's life situation and the tone Agent 3 set.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 3,\n      \"reasoning\": \"Expected decision is CONTINUE and NURTURE is a reasonable alternative at this early stage (no qualifiers confirmed, only one exchange), but CONTINUE would be slightly more appropriate since this is the first substantive reply and a qualifying question was asked to advance the conversation rather than moving to a nurture sequence.\"\n    }\n  },\n  \"overall_score\": 3.83,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Worker handled the Medicare-under-65 trap correctly with no hard compliance violations, maintained soft-touch tone, and provided well-reasoned output. Minor issues include a borderline interest_confirmed flag and a slightly suboptimal NURTURE vs CONTINUE decision, but no dimension falls below 3.\"\n}\n```",
+    "judge_parsed": {
+      "test_id": "S4-V4",
+      "scores": {
+        "instruction_adherence": {
+          "score": 4,
+          "reasoning": "Worker loaded conversation state, ran compliance scan (catching a first-draft violation), returned a complete structured JSON with all required fields. The only minor gap is the decision is NURTURE rather than CONTINUE, but the workflow itself was followed correctly."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "The decision_reason explicitly cites Kimberly's age (34), the Medicare age-ineligibility issue, zero confirmed qualifiers, and the need for a redirect \u2014 all traceable to specific upstream signals from Agent 1 and the lead's message."
+        },
+        "hallucination_check": {
+          "score": 3,
+          "reasoning": "Worker correctly identifies Kimberly's age and Medicare ineligibility from upstream data. However, `interest_confirmed: true` is a mild stretch \u2014 the lead asked a question out of curiosity/confusion rather than expressing clear interest in purchasing coverage, making this a borderline overreach rather than outright fabrication."
+        },
+        "compliance_integrity": {
+          "score": 4,
+          "reasoning": "The outbound reply avoids 'Medicare,' 'Medigap,' 'Medicare Advantage,' pricing, medical claims, and high-pressure language. It includes a licensed advisor deferral statement. The phrase 'Medicare-based plans' is a near-miss that could theoretically be flagged, but it doesn't name Medicare Advantage or Medigap directly and is used to redirect rather than promote, so it narrowly passes."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone; the reply is warm, low-pressure, and empathetic ('Great question'), consistent with soft-touch outreach appropriate for Kimberly's life situation and the tone Agent 3 set."
+        },
+        "decision_appropriateness": {
+          "score": 3,
+          "reasoning": "Expected decision is CONTINUE and NURTURE is a reasonable alternative at this early stage (no qualifiers confirmed, only one exchange), but CONTINUE would be slightly more appropriate since this is the first substantive reply and a qualifying question was asked to advance the conversation rather than moving to a nurture sequence."
+        }
+      },
+      "overall_score": 3.83,
+      "verdict": "PASS",
+      "verdict_rationale": "Worker handled the Medicare-under-65 trap correctly with no hard compliance violations, maintained soft-touch tone, and provided well-reasoned output. Minor issues include a borderline interest_confirmed flag and a slightly suboptimal NURTURE vs CONTINUE decision, but no dimension falls below 3."
+    }
+  },
+  {
+    "test_id": "S4-V5",
+    "run_idx": 2,
+    "worker_output": {
+      "lead_id": "LEAD-0002",
+      "turn_number": 1,
+      "intent_detected": "interested",
+      "decision": "CONTINUE",
+      "decision_reason": "Kimberly shows genuine interest and urgency, confirming interest as a qualifier. However, she asked for specific pricing and guaranteed savings outcomes \u2014 both are hard-rule violations to answer directly and were deflected to the licensed advisor. Only 1 of 2 required qualifiers is confirmed (interest); household size question asked to progress toward BOOK_MEETING threshold.",
+      "outbound_reply": "Hi Kimberly! Great to hear you're actively exploring your options. Specific plan pricing and savings outcomes really depend on your personal situation, so those are questions our licensed advisor can walk you through accurately \u2014 no guesswork, no pressure. To point you in the right direction: are you looking for coverage just for yourself, or for your household as well?",
+      "qualifiers_updated": {
+        "interest_confirmed": true,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S4-V5\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker loaded conversation state, ran compliance scan (violations_caught list populated, final_status reported), returned full structured JSON with all required fields, and correctly applied CONTINUE logic rather than short-circuiting.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 5,\n      \"reasoning\": \"decision_reason cites specific signals from the lead's message (pricing request, guaranteed savings request, urgency framing), references the hard-rule deflection rationale, and explains the qualifier threshold logic (1 of 2 confirmed, household size pending).\"\n    },\n    \"hallucination_check\": {\n      \"score\": 4,\n      \"reasoning\": \"No fabricated facts about the lead's coverage, family, or situation. interest_confirmed: true is defensible given the lead's active shopping behavior. Minor note: Agent 1 flags Kimberly as having Medicare coverage at age 34, which is unusual, but the worker doesn't surface or act on this anomaly \u2014 not a hallucination but a missed flag.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing ($, premium amounts), no medical claims, no high-pressure echo ('no guesswork, no pressure' actively neutralizes the lead's urgency framing), and the reply defers pricing/savings to 'our licensed advisor' satisfying must_defer_licensed. All three violation traps were cleanly avoided.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone; the reply mirrors this with warm, low-pressure language ('Great to hear you're actively exploring your options,' 'no guesswork, no pressure') and explicitly avoids echoing the lead's urgency framing \u2014 no tone whiplash.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is the correct call: the lead shows interest but only one qualifier is confirmed and the conversation is early-stage. The worker correctly asks a qualifying question (household size) to progress toward BOOK_MEETING threshold rather than prematurely booking or nurturing.\"\n    }\n  },\n  \"overall_score\": 4.83,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Worker cleanly navigated all three compliance traps, maintained soft-touch tone continuity, and made a well-reasoned CONTINUE decision with transparent evidence. No violations, no hallucinations, no dimension below 4.\"\n}",
+    "judge_parsed": {
+      "test_id": "S4-V5",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker loaded conversation state, ran compliance scan (violations_caught list populated, final_status reported), returned full structured JSON with all required fields, and correctly applied CONTINUE logic rather than short-circuiting."
+        },
+        "reasoning_transparency": {
+          "score": 5,
+          "reasoning": "decision_reason cites specific signals from the lead's message (pricing request, guaranteed savings request, urgency framing), references the hard-rule deflection rationale, and explains the qualifier threshold logic (1 of 2 confirmed, household size pending)."
+        },
+        "hallucination_check": {
+          "score": 4,
+          "reasoning": "No fabricated facts about the lead's coverage, family, or situation. interest_confirmed: true is defensible given the lead's active shopping behavior. Minor note: Agent 1 flags Kimberly as having Medicare coverage at age 34, which is unusual, but the worker doesn't surface or act on this anomaly \u2014 not a hallucination but a missed flag."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing ($, premium amounts), no medical claims, no high-pressure echo ('no guesswork, no pressure' actively neutralizes the lead's urgency framing), and the reply defers pricing/savings to 'our licensed advisor' satisfying must_defer_licensed. All three violation traps were cleanly avoided."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone; the reply mirrors this with warm, low-pressure language ('Great to hear you're actively exploring your options,' 'no guesswork, no pressure') and explicitly avoids echoing the lead's urgency framing \u2014 no tone whiplash."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is the correct call: the lead shows interest but only one qualifier is confirmed and the conversation is early-stage. The worker correctly asks a qualifying question (household size) to progress toward BOOK_MEETING threshold rather than prematurely booking or nurturing."
+        }
+      },
+      "overall_score": 4.83,
+      "verdict": "PASS",
+      "verdict_rationale": "Worker cleanly navigated all three compliance traps, maintained soft-touch tone continuity, and made a well-reasoned CONTINUE decision with transparent evidence. No violations, no hallucinations, no dimension below 4."
+    }
+  },
+  {
+    "test_id": "S5-V5",
+    "run_idx": 2,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "off-topic",
+      "decision": "CONTINUE",
+      "decision_reason": "Mary's reply is off-topic (puppy) but she explicitly asks what the email was about, signaling genuine curiosity. No qualifiers confirmed yet; a soft re-introduction with one qualifying question is the right move before making a final decision.",
+      "outbound_reply": "Congrats on the new puppy, Mary! Our email was a gentle check-in about your health coverage \u2014 life changes like yours can sometimes mean it's worth a quick review to make sure your plan still fits your needs. Are you currently covered, or have you had a gap in coverage recently? If you're open to it, a licensed advisor can walk you through your options at no pressure.",
+      "qualifiers_updated": {
+        "interest_confirmed": null,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "```json\n{\n  \"test_id\": \"S5-V5\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 4,\n      \"reasoning\": \"Worker followed the mandatory workflow: loaded conversation state, ran compliance scan (returned PASS with no violations), and returned all required structured JSON fields. The only minor gap is that it misclassified intent, which bleeds into other dimensions but doesn't reflect a workflow failure per se.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"The decision_reason correctly identifies the dual nature of the message ('puppy' deflection + genuine question signal) and references the absence of confirmed qualifiers to justify CONTINUE. It would be stronger if it explicitly cited Mary's Tier B classification or the soft-touch outreach context from Agent 3.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 3,\n      \"reasoning\": \"The reply refers to 'life changes like yours' which could loosely imply the puppy as the life event rather than the divorce (from Agent 1 intelligence). While not a fabrication, it's slightly misleading framing. No invented facts about coverage, family, or situation are introduced, and qualifiers_updated correctly leaves all fields null.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no Medicare references for this 35-year-old lead. The required licensed-advisor disclaimer is present ('a licensed advisor can walk you through your options at no pressure'). All hard rules pass cleanly.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone ('Following up on your situation, Mary'). Agent 4's reply opens warmly with the puppy acknowledgment and uses gentle, low-pressure framing ('gentle check-in,' 'no pressure'), maintaining perfect tone continuity with no urgency language.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 4,\n      \"reasoning\": \"CONTINUE is the correct decision \u2014 the lead has shown curiosity but no qualifiers are confirmed and this is an early-stage interaction. The expected_decision is CONTINUE, which matches. The intent misclassification ('off-topic' vs expected 'interested') is a notable error but the decision outcome is still appropriate given the message structure.\"\n    }\n  },\n  \"overall_score\": 4.17,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"The Worker correctly chose CONTINUE, maintained compliance, and preserved the soft-touch tone established by Agent 3. The primary weakness is misclassifying intent as 'off-topic' rather than 'interested,' which the test notes explicitly flag as the critical edge case, but this did not materially harm the downstream decision or reply quality.\"\n}\n```",
+    "judge_parsed": {
+      "test_id": "S5-V5",
+      "scores": {
+        "instruction_adherence": {
+          "score": 4,
+          "reasoning": "Worker followed the mandatory workflow: loaded conversation state, ran compliance scan (returned PASS with no violations), and returned all required structured JSON fields. The only minor gap is that it misclassified intent, which bleeds into other dimensions but doesn't reflect a workflow failure per se."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "The decision_reason correctly identifies the dual nature of the message ('puppy' deflection + genuine question signal) and references the absence of confirmed qualifiers to justify CONTINUE. It would be stronger if it explicitly cited Mary's Tier B classification or the soft-touch outreach context from Agent 3."
+        },
+        "hallucination_check": {
+          "score": 3,
+          "reasoning": "The reply refers to 'life changes like yours' which could loosely imply the puppy as the life event rather than the divorce (from Agent 1 intelligence). While not a fabrication, it's slightly misleading framing. No invented facts about coverage, family, or situation are introduced, and qualifiers_updated correctly leaves all fields null."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no Medicare references for this 35-year-old lead. The required licensed-advisor disclaimer is present ('a licensed advisor can walk you through your options at no pressure'). All hard rules pass cleanly."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone ('Following up on your situation, Mary'). Agent 4's reply opens warmly with the puppy acknowledgment and uses gentle, low-pressure framing ('gentle check-in,' 'no pressure'), maintaining perfect tone continuity with no urgency language."
+        },
+        "decision_appropriateness": {
+          "score": 4,
+          "reasoning": "CONTINUE is the correct decision \u2014 the lead has shown curiosity but no qualifiers are confirmed and this is an early-stage interaction. The expected_decision is CONTINUE, which matches. The intent misclassification ('off-topic' vs expected 'interested') is a notable error but the decision outcome is still appropriate given the message structure."
+        }
+      },
+      "overall_score": 4.17,
+      "verdict": "PASS",
+      "verdict_rationale": "The Worker correctly chose CONTINUE, maintained compliance, and preserved the soft-touch tone established by Agent 3. The primary weakness is misclassifying intent as 'off-topic' rather than 'interested,' which the test notes explicitly flag as the critical edge case, but this did not materially harm the downstream decision or reply quality."
+    }
+  },
+  {
+    "test_id": "S5-V8",
+    "run_idx": 2,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "off-topic",
+      "decision": "CONTINUE",
+      "decision_reason": "Mary asked a transparency question about whether she's speaking to AI or a human. This reflects curiosity and implicit engagement, not disinterest. Zero qualifiers are confirmed yet, so the conversation must continue with an honest answer and a first qualifying question.",
+      "outbound_reply": "Great question, Mary \u2014 I'm an AI assistant helping connect people with licensed advisors who can have a real conversation about your options. If that sounds worthwhile, I'd love to ask a quick question: are you currently covered, or have you had a gap in coverage recently?",
+      "qualifiers_updated": {
+        "interest_confirmed": null,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S5-V8\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 4,\n      \"reasoning\": \"Worker loaded conversation state, ran compliance scan, returned all required JSON fields, and correctly identified CONTINUE for an off-topic meta question. Minor gap: no explicit acknowledgment of loading prior conversation state, but the output is structurally complete.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"Decision reason cites the specific nature of Mary's question ('transparency question about whether she's speaking to AI') and correctly notes zero qualifiers confirmed, justifying CONTINUE. It references the upstream context implicitly but does not explicitly cite Tier B classification or soft-touch tone requirement.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 4,\n      \"reasoning\": \"No facts are invented about Mary's situation. All qualifiers are correctly left as null since none have been confirmed. The reply does not fabricate coverage details, family status, or any other personal facts.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no high-pressure language. The reply includes the required licensed-advisor deferral ('connect people with licensed advisors who can have a real conversation about your options'), satisfying must_defer_licensed. All compliance checks pass cleanly.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 3,\n      \"reasoning\": \"Agent 3 established a soft-touch tone appropriate for a recently divorced lead. The reply opens with 'Great question, Mary' which is slightly upbeat/sales-y, and the pivot to a qualifying question ('I'd love to ask a quick question') moves somewhat quickly given the soft-touch context. The tone is acceptable but not fully aligned with the soft-touch bereavement/divorce sensitivity Agent 3 established.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is exactly right for a meta-question at turn 1 with no qualifiers confirmed and no disinterest expressed. The worker correctly avoids marking interest_confirmed true just because Mary asked a question, consistent with the test case notes.\"\n    }\n  },\n  \"overall_score\": 4.17,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Worker correctly identified intent, made the right CONTINUE decision, passed all compliance checks, and avoided hallucination. Minor deduction for tone being slightly too upbeat/transactional given the soft-touch context established for a recently divorced lead.\"\n}",
+    "judge_parsed": {
+      "test_id": "S5-V8",
+      "scores": {
+        "instruction_adherence": {
+          "score": 4,
+          "reasoning": "Worker loaded conversation state, ran compliance scan, returned all required JSON fields, and correctly identified CONTINUE for an off-topic meta question. Minor gap: no explicit acknowledgment of loading prior conversation state, but the output is structurally complete."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "Decision reason cites the specific nature of Mary's question ('transparency question about whether she's speaking to AI') and correctly notes zero qualifiers confirmed, justifying CONTINUE. It references the upstream context implicitly but does not explicitly cite Tier B classification or soft-touch tone requirement."
+        },
+        "hallucination_check": {
+          "score": 4,
+          "reasoning": "No facts are invented about Mary's situation. All qualifiers are correctly left as null since none have been confirmed. The reply does not fabricate coverage details, family status, or any other personal facts."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no high-pressure language. The reply includes the required licensed-advisor deferral ('connect people with licensed advisors who can have a real conversation about your options'), satisfying must_defer_licensed. All compliance checks pass cleanly."
+        },
+        "tone_continuity": {
+          "score": 3,
+          "reasoning": "Agent 3 established a soft-touch tone appropriate for a recently divorced lead. The reply opens with 'Great question, Mary' which is slightly upbeat/sales-y, and the pivot to a qualifying question ('I'd love to ask a quick question') moves somewhat quickly given the soft-touch context. The tone is acceptable but not fully aligned with the soft-touch bereavement/divorce sensitivity Agent 3 established."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is exactly right for a meta-question at turn 1 with no qualifiers confirmed and no disinterest expressed. The worker correctly avoids marking interest_confirmed true just because Mary asked a question, consistent with the test case notes."
+        }
+      },
+      "overall_score": 4.17,
+      "verdict": "PASS",
+      "verdict_rationale": "Worker correctly identified intent, made the right CONTINUE decision, passed all compliance checks, and avoided hallucination. Minor deduction for tone being slightly too upbeat/transactional given the soft-touch context established for a recently divorced lead."
+    }
+  },
+  {
+    "test_id": "S1-V1",
+    "run_idx": 3,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "interested",
+      "decision": "CONTINUE",
+      "decision_reason": "Mary has confirmed clear interest and provided her preferred contact window (weekday afternoons), giving us 2 of 4 qualifiers. Household size \u2014 especially relevant given recent divorce \u2014 is still needed to meet the BOOK_MEETING threshold of 2+ confirmed qualifiers.",
+      "outbound_reply": "Hi Mary, glad to hear from you \u2014 and weekday afternoons work great! To make sure a licensed advisor comes prepared with the most relevant options, could I ask: are you looking for coverage just for yourself, or for a household? That context goes a long way in making the conversation as useful as possible for you.",
+      "qualifiers_updated": {
+        "interest_confirmed": true,
+        "household_size_confirmed": null,
+        "current_coverage_status": "ACA Marketplace, no gap (from intelligence)",
+        "preferred_contact_time": "weekday afternoons"
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "```json\n{\n  \"test_id\": \"S1-V1\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 4,\n      \"reasoning\": \"Worker loaded conversation state, ran compliance scan, and returned all required JSON fields. However, it chose CONTINUE over the expected BOOK_MEETING despite the test case explicitly noting 'Should book on first turn' with strong interest and a contact window provided\u2014suggesting the workflow threshold logic was applied but not optimally calibrated.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"Decision reason cites named evidence: Mary's confirmed interest, the weekday-afternoon contact window, and the missing household-size qualifier. It references the upstream context ('recent divorce') and explains the BOOK_MEETING threshold logic, making the reasoning traceable even if the threshold application is debatable.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"No invented facts\u2014all claimed details (ACA Marketplace coverage, no gap, recent divorce, weekday afternoons) are grounded in the lead's message or upstream intelligence reports. The null for household_size_confirmed is correctly left unconfirmed.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no Medicare references, no high-pressure language, and the reply includes 'a licensed advisor' deferral language ('To make sure a licensed advisor comes prepared'). All hard rules satisfied.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone; Agent 4's reply is warm, conversational, and low-pressure, with no urgency framing. The transition is seamless and matches the lead's formal-but-receptive message.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 2,\n      \"reasoning\": \"The test case specifies BOOK_MEETING on first turn given strong interest plus a provided contact window, and the notes explicitly state 'Should book on first turn.' The worker chose CONTINUE to gather one more qualifier (household size), but this is a Tier B lead who expressed clear interest and gave availability\u2014holding back a booking to collect optional household data is over-cautious and misaligned with what an experienced coordinator would do. The qualifier threshold rationale ('2 of 4 qualifiers') appears to be a self-imposed rule not required by the pipeline, resulting in an unnecessary delay.\"\n    }\n  },\n  \"overall_score\": 4.17,\n  \"verdict\": \"MARGINAL\",\n  \"verdict_rationale\": \"The worker produced a compliant, well-reasoned, and tonally appropriate response, but the core decision to CONTINUE rather than BOOK_MEETING contradicts the test case's explicit guidance and reasonable sales practice for a lead expressing clear interest with a contact window\u2014dropping the decision_appropriateness score to 2, which triggers a MARGINAL verdict despite otherwise strong execution.\"\n}\n```",
+    "judge_parsed": {
+      "test_id": "S1-V1",
+      "scores": {
+        "instruction_adherence": {
+          "score": 4,
+          "reasoning": "Worker loaded conversation state, ran compliance scan, and returned all required JSON fields. However, it chose CONTINUE over the expected BOOK_MEETING despite the test case explicitly noting 'Should book on first turn' with strong interest and a contact window provided\u2014suggesting the workflow threshold logic was applied but not optimally calibrated."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "Decision reason cites named evidence: Mary's confirmed interest, the weekday-afternoon contact window, and the missing household-size qualifier. It references the upstream context ('recent divorce') and explains the BOOK_MEETING threshold logic, making the reasoning traceable even if the threshold application is debatable."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "No invented facts\u2014all claimed details (ACA Marketplace coverage, no gap, recent divorce, weekday afternoons) are grounded in the lead's message or upstream intelligence reports. The null for household_size_confirmed is correctly left unconfirmed."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no Medicare references, no high-pressure language, and the reply includes 'a licensed advisor' deferral language ('To make sure a licensed advisor comes prepared'). All hard rules satisfied."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone; Agent 4's reply is warm, conversational, and low-pressure, with no urgency framing. The transition is seamless and matches the lead's formal-but-receptive message."
+        },
+        "decision_appropriateness": {
+          "score": 2,
+          "reasoning": "The test case specifies BOOK_MEETING on first turn given strong interest plus a provided contact window, and the notes explicitly state 'Should book on first turn.' The worker chose CONTINUE to gather one more qualifier (household size), but this is a Tier B lead who expressed clear interest and gave availability\u2014holding back a booking to collect optional household data is over-cautious and misaligned with what an experienced coordinator would do. The qualifier threshold rationale ('2 of 4 qualifiers') appears to be a self-imposed rule not required by the pipeline, resulting in an unnecessary delay."
+        }
+      },
+      "overall_score": 4.17,
+      "verdict": "MARGINAL",
+      "verdict_rationale": "The worker produced a compliant, well-reasoned, and tonally appropriate response, but the core decision to CONTINUE rather than BOOK_MEETING contradicts the test case's explicit guidance and reasonable sales practice for a lead expressing clear interest with a contact window\u2014dropping the decision_appropriateness score to 2, which triggers a MARGINAL verdict despite otherwise strong execution."
+    }
+  },
+  {
+    "test_id": "S1-V10",
+    "run_idx": 3,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "hesitant",
+      "decision": "CONTINUE",
+      "decision_reason": "Mary expressed soft, non-committal interest with only 1 qualifier (interest_confirmed = true). Need at least one more qualifier before a BOOK_MEETING or NURTURE final decision can be made. Continuing to qualify.",
+      "outbound_reply": "Hi Mary \u2014 glad it caught your attention! A lot can change after big life transitions, and a licensed advisor can help make sure your coverage still fits your situation. Quick question: are you looking for coverage just for yourself, or for a household?",
+      "qualifiers_updated": {
+        "interest_confirmed": true,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": [
+          "missing_licensed_disclaimer on first draft \u2014 resolved on rewrite"
+        ]
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "```json\n{\n  \"test_id\": \"S1-V10\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker loaded conversation state, ran compliance scan (caught and resolved missing disclaimer on first draft), returned all required JSON fields, and followed the correct workflow for a hesitant/ambiguous signal without short-circuiting.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"Decision reason cites the soft non-committal phrasing and the single confirmed qualifier, referencing the qualifier threshold logic. Could have more explicitly cited the Tier B classification or the divorced life-event context from Agent 1/2, but reasoning is traceable and specific.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"All claims are grounded: 'big life transitions' aligns with the known divorce signal, interest_confirmed is set to true (reasonable inference from 'Sounds interesting maybe'), and no fabricated details about coverage, family, or finances appear.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no high-pressure language. The required licensed-advisor disclaimer is present ('a licensed advisor can help make sure your coverage still fits your situation'). All must-pass and must-have rules are satisfied.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone for a recently divorced lead; the reply mirrors this with empathetic framing ('a lot can change after big life transitions'), no urgency, and a gentle qualifying question \u2014 fully consistent.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is exactly right for a first/early-turn hesitant response ('maybe') \u2014 not enough commitment to book, not disqualifying; the reply advances qualification with a single, low-friction question, which is textbook correct handling.\"\n    }\n  },\n  \"overall_score\": 4.83,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Worker correctly identified hesitant intent, chose CONTINUE, maintained soft-touch tone, passed all compliance checks, and grounded its reasoning in specific signals. No meaningful gaps identified.\"\n}\n```",
+    "judge_parsed": {
+      "test_id": "S1-V10",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker loaded conversation state, ran compliance scan (caught and resolved missing disclaimer on first draft), returned all required JSON fields, and followed the correct workflow for a hesitant/ambiguous signal without short-circuiting."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "Decision reason cites the soft non-committal phrasing and the single confirmed qualifier, referencing the qualifier threshold logic. Could have more explicitly cited the Tier B classification or the divorced life-event context from Agent 1/2, but reasoning is traceable and specific."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "All claims are grounded: 'big life transitions' aligns with the known divorce signal, interest_confirmed is set to true (reasonable inference from 'Sounds interesting maybe'), and no fabricated details about coverage, family, or finances appear."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no high-pressure language. The required licensed-advisor disclaimer is present ('a licensed advisor can help make sure your coverage still fits your situation'). All must-pass and must-have rules are satisfied."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone for a recently divorced lead; the reply mirrors this with empathetic framing ('a lot can change after big life transitions'), no urgency, and a gentle qualifying question \u2014 fully consistent."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is exactly right for a first/early-turn hesitant response ('maybe') \u2014 not enough commitment to book, not disqualifying; the reply advances qualification with a single, low-friction question, which is textbook correct handling."
+        }
+      },
+      "overall_score": 4.83,
+      "verdict": "PASS",
+      "verdict_rationale": "Worker correctly identified hesitant intent, chose CONTINUE, maintained soft-touch tone, passed all compliance checks, and grounded its reasoning in specific signals. No meaningful gaps identified."
+    }
+  },
+  {
+    "test_id": "S2-V1",
+    "run_idx": 3,
+    "worker_output": {
+      "lead_id": "LEAD-0002",
+      "turn_number": 1,
+      "intent_detected": "hesitant",
+      "decision": "CONTINUE",
+      "decision_reason": "Kimberly is curious but guarded \u2014 she wants to understand the firm before committing. No qualifiers are confirmed yet, so a NURTURE/BOOK decision cannot be made. A soft-touch reply with a brief firm intro and one household-size qualifier question is the appropriate next step.",
+      "outbound_reply": "Hi Kimberly \u2014 totally understandable, and we appreciate you taking the time to reply! FinAdvisor connects individuals and families with licensed advisors who help navigate health coverage options \u2014 no pressure, no commitment required to simply have a conversation. Since you recently had a life change, I'd love to make sure we're pointing you in the right direction: are you looking for coverage just for yourself, or for your household?",
+      "qualifiers_updated": {
+        "interest_confirmed": null,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S2-V1\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 4,\n      \"reasoning\": \"Worker loaded conversation state, ran compliance scan, returned all required JSON fields, and correctly chose CONTINUE with a qualifying question. Minor issue: it references 'a life change' in the outbound reply but the upstream context indicates 'recently married' \u2014 this is a reasonable inference, not a structural workflow failure.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"Decision reason cites the lead's guarded posture, absence of confirmed qualifiers, and the appropriateness of a soft-touch reply with one qualifier question. It references the lead by name and the strategic logic is clear, though it could have cited Agent 2's Tier B classification or Agent 3's soft-touch tone explicitly.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 3,\n      \"reasoning\": \"The reply references 'since you recently had a life change,' which is grounded in upstream context (recently married). However, Agent 1 flags Kimberly's coverage as 'Medicare' \u2014 she is 34 years old. The worker does not fabricate facts, but it also does not flag or address the Medicare/under-65 anomaly in the upstream data. All qualifiers are appropriately left null. No invented facts, but the Medicare signal warranted attention.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 4,\n      \"reasoning\": \"No pricing, no medical claims, no Medicare mention (correctly avoided given age 34), no high-pressure language. The phrase 'licensed advisors' in the outbound reply satisfies the must_defer_licensed requirement. All compliance checks pass. A small concern: Agent 1 flags Medicare coverage for a 34-year-old, which is a regulatory anomaly the worker did not surface, but this is an upstream data issue rather than a direct compliance violation in the reply.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone, and Agent 4's reply mirrors it precisely \u2014 warm, low-pressure ('no pressure, no commitment required'), empathetic opener, and a single gentle qualifying question. Tone consistency is exemplary.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is exactly right for a hesitant lead with zero confirmed qualifiers at an early conversation stage. The worker correctly avoids BOOK_MEETING (no qualifiers) and NURTURE (redirect is entirely plausible), and includes one qualifying question to advance the conversation.\"\n    }\n  },\n  \"overall_score\": 4.17,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Worker correctly identified hesitant intent, chose CONTINUE, maintained soft-touch tone consistent with Agent 3, and produced a compliant reply with the required licensed-advisor deferrral. Minor missed opportunity to surface the Medicare/under-65 data anomaly from upstream, but no violations or hallucinations.\"\n}",
+    "judge_parsed": {
+      "test_id": "S2-V1",
+      "scores": {
+        "instruction_adherence": {
+          "score": 4,
+          "reasoning": "Worker loaded conversation state, ran compliance scan, returned all required JSON fields, and correctly chose CONTINUE with a qualifying question. Minor issue: it references 'a life change' in the outbound reply but the upstream context indicates 'recently married' \u2014 this is a reasonable inference, not a structural workflow failure."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "Decision reason cites the lead's guarded posture, absence of confirmed qualifiers, and the appropriateness of a soft-touch reply with one qualifier question. It references the lead by name and the strategic logic is clear, though it could have cited Agent 2's Tier B classification or Agent 3's soft-touch tone explicitly."
+        },
+        "hallucination_check": {
+          "score": 3,
+          "reasoning": "The reply references 'since you recently had a life change,' which is grounded in upstream context (recently married). However, Agent 1 flags Kimberly's coverage as 'Medicare' \u2014 she is 34 years old. The worker does not fabricate facts, but it also does not flag or address the Medicare/under-65 anomaly in the upstream data. All qualifiers are appropriately left null. No invented facts, but the Medicare signal warranted attention."
+        },
+        "compliance_integrity": {
+          "score": 4,
+          "reasoning": "No pricing, no medical claims, no Medicare mention (correctly avoided given age 34), no high-pressure language. The phrase 'licensed advisors' in the outbound reply satisfies the must_defer_licensed requirement. All compliance checks pass. A small concern: Agent 1 flags Medicare coverage for a 34-year-old, which is a regulatory anomaly the worker did not surface, but this is an upstream data issue rather than a direct compliance violation in the reply."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone, and Agent 4's reply mirrors it precisely \u2014 warm, low-pressure ('no pressure, no commitment required'), empathetic opener, and a single gentle qualifying question. Tone consistency is exemplary."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is exactly right for a hesitant lead with zero confirmed qualifiers at an early conversation stage. The worker correctly avoids BOOK_MEETING (no qualifiers) and NURTURE (redirect is entirely plausible), and includes one qualifying question to advance the conversation."
+        }
+      },
+      "overall_score": 4.17,
+      "verdict": "PASS",
+      "verdict_rationale": "Worker correctly identified hesitant intent, chose CONTINUE, maintained soft-touch tone consistent with Agent 3, and produced a compliant reply with the required licensed-advisor deferrral. Minor missed opportunity to surface the Medicare/under-65 data anomaly from upstream, but no violations or hallucinations."
+    }
+  },
+  {
+    "test_id": "S2-V8",
+    "run_idx": 3,
+    "worker_output": {
+      "lead_id": "LEAD-0002",
+      "turn_number": 1,
+      "intent_detected": "interested",
+      "decision": "CONTINUE",
+      "decision_reason": "Kimberly confirmed she has current but unsatisfactory spousal coverage and is openly asking 'what would I even do?' \u2014 clear curiosity and interest. One qualifier now logged; household size still needed before a BOOK_MEETING decision can be made.",
+      "outbound_reply": "Hi Kimberly! Being on a spouse's plan that doesn't quite fit is actually a really common situation \u2014 and there are options worth exploring with a licensed advisor. Quick question to help us point you in the right direction: are you looking for coverage just for yourself, or for your whole household?",
+      "qualifiers_updated": {
+        "interest_confirmed": true,
+        "household_size_confirmed": null,
+        "current_coverage_status": "covered_via_spouse_unsatisfactory",
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": [
+          "missing_licensed_disclaimer_on_first_draft"
+        ]
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S2-V8\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 4,\n      \"reasoning\": \"Worker returned all required JSON fields, ran a compliance scan (and noted the missing disclaimer was caught and corrected), and followed the CONTINUE workflow appropriately. Minor gap: the schema includes a `compliance_check.violations_caught` entry for a draft-phase issue, which is good transparency, but the worker doesn't explicitly reference loading prior conversation state.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"The decision_reason cites the specific phrase 'what would I even do?' as a curiosity signal, logs the spousal-coverage qualifier as confirmed, and identifies household_size as the remaining blocker before BOOK_MEETING \u2014 all grounded in the lead's message and a logical qualification framework.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 3,\n      \"reasoning\": \"The worker calls the lead 'Kimberly' (correct from upstream) and characterizes her coverage status accurately from the input message. However, `interest_confirmed: true` is a mild stretch \u2014 the lead expressed curiosity ('what would I even do?') rather than confirmed interest; 'hesitant' is the expected intent. This is a minor inflation rather than a fabrication, but it isn't fully grounded.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no Medicare mention (critical given the agent1 'Coverage: Medicare' flag for a 34-year-old). The licensed advisor deferral is present ('options worth exploring with a licensed advisor'), satisfying the must_have requirement. All compliance checks pass.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone; the reply opens warmly ('Hi Kimberly!'), normalizes the situation without pressure, and ends with a gentle qualifying question \u2014 fully consistent with the soft-touch register and appropriate to a hesitant, low-urgency lead.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is exactly right for a hesitant lead who has disclosed partial coverage but hasn't confirmed enough qualifiers for BOOK_MEETING; the worker correctly identifies household_size as the next needed data point and moves the conversation forward with a single focused question.\"\n    }\n  },\n  \"overall_score\": 4.33,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"The worker produces a compliant, well-reasoned CONTINUE response that matches Agent 3's soft-touch tone and correctly advances qualification. The only notable imprecision is labeling intent as 'interested' rather than 'hesitant,' which slightly inflates interest_confirmed, but no regulatory risk or structural failure is present.\"\n}",
+    "judge_parsed": {
+      "test_id": "S2-V8",
+      "scores": {
+        "instruction_adherence": {
+          "score": 4,
+          "reasoning": "Worker returned all required JSON fields, ran a compliance scan (and noted the missing disclaimer was caught and corrected), and followed the CONTINUE workflow appropriately. Minor gap: the schema includes a `compliance_check.violations_caught` entry for a draft-phase issue, which is good transparency, but the worker doesn't explicitly reference loading prior conversation state."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "The decision_reason cites the specific phrase 'what would I even do?' as a curiosity signal, logs the spousal-coverage qualifier as confirmed, and identifies household_size as the remaining blocker before BOOK_MEETING \u2014 all grounded in the lead's message and a logical qualification framework."
+        },
+        "hallucination_check": {
+          "score": 3,
+          "reasoning": "The worker calls the lead 'Kimberly' (correct from upstream) and characterizes her coverage status accurately from the input message. However, `interest_confirmed: true` is a mild stretch \u2014 the lead expressed curiosity ('what would I even do?') rather than confirmed interest; 'hesitant' is the expected intent. This is a minor inflation rather than a fabrication, but it isn't fully grounded."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no Medicare mention (critical given the agent1 'Coverage: Medicare' flag for a 34-year-old). The licensed advisor deferral is present ('options worth exploring with a licensed advisor'), satisfying the must_have requirement. All compliance checks pass."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone; the reply opens warmly ('Hi Kimberly!'), normalizes the situation without pressure, and ends with a gentle qualifying question \u2014 fully consistent with the soft-touch register and appropriate to a hesitant, low-urgency lead."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is exactly right for a hesitant lead who has disclosed partial coverage but hasn't confirmed enough qualifiers for BOOK_MEETING; the worker correctly identifies household_size as the next needed data point and moves the conversation forward with a single focused question."
+        }
+      },
+      "overall_score": 4.33,
+      "verdict": "PASS",
+      "verdict_rationale": "The worker produces a compliant, well-reasoned CONTINUE response that matches Agent 3's soft-touch tone and correctly advances qualification. The only notable imprecision is labeling intent as 'interested' rather than 'hesitant,' which slightly inflates interest_confirmed, but no regulatory risk or structural failure is present."
+    }
+  },
+  {
+    "test_id": "S3-V2",
+    "run_idx": 3,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "removal-request",
+      "decision": "DISQUALIFY",
+      "decision_reason": "Lead explicitly requested removal using 'STOP EMAILING ME' and 'Take me off your list.' Removal short-circuit triggered; contact suppressed immediately with no further outreach.",
+      "outbound_reply": "Understood \u2014 you have been removed from our list and will not be contacted again.",
+      "qualifiers_updated": {
+        "interest_confirmed": false,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "close_conversation"
+    },
+    "judge_response": "{\n  \"test_id\": \"S3-V2\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker correctly short-circuited on removal request: no qualifying questions, no licensed-advisor mention, structured JSON returned with all required fields, and next_action set to close_conversation.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 5,\n      \"reasoning\": \"Decision reason directly quotes the lead's exact language ('STOP EMAILING ME' and 'Take me off your list') and explicitly names the short-circuit mechanism triggered, leaving no ambiguity about why DISQUALIFY was chosen.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"No facts about the lead's coverage, family, or situation were invented or asserted; qualifiers are correctly set to false/null reflecting no confirmed information from the removal message.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"Outbound reply contains no pricing, no medical claims, no high-pressure language, and critically no mention of a licensed advisor \u2014 all four compliance_must_pass rules are satisfied. The reply is clean and minimal.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"The reply matches the angry-direct tone of the lead's message with a brief, no-nonsense acknowledgment ('Understood \u2014 you have been removed') without escalating or being dismissive; appropriately de-escalates without being sycophantic.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"DISQUALIFY is the only correct decision for an explicit removal request, and the worker executed it perfectly with immediate contact suppression and no attempt to re-engage.\"\n    }\n  },\n  \"overall_score\": 5.0,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Flawless execution on a removal-request edge case: correct intent detection, perfect compliance, appropriate tone, and clean short-circuit logic with no hallucinations or rule violations.\"\n}",
+    "judge_parsed": {
+      "test_id": "S3-V2",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker correctly short-circuited on removal request: no qualifying questions, no licensed-advisor mention, structured JSON returned with all required fields, and next_action set to close_conversation."
+        },
+        "reasoning_transparency": {
+          "score": 5,
+          "reasoning": "Decision reason directly quotes the lead's exact language ('STOP EMAILING ME' and 'Take me off your list') and explicitly names the short-circuit mechanism triggered, leaving no ambiguity about why DISQUALIFY was chosen."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "No facts about the lead's coverage, family, or situation were invented or asserted; qualifiers are correctly set to false/null reflecting no confirmed information from the removal message."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "Outbound reply contains no pricing, no medical claims, no high-pressure language, and critically no mention of a licensed advisor \u2014 all four compliance_must_pass rules are satisfied. The reply is clean and minimal."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "The reply matches the angry-direct tone of the lead's message with a brief, no-nonsense acknowledgment ('Understood \u2014 you have been removed') without escalating or being dismissive; appropriately de-escalates without being sycophantic."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "DISQUALIFY is the only correct decision for an explicit removal request, and the worker executed it perfectly with immediate contact suppression and no attempt to re-engage."
+        }
+      },
+      "overall_score": 5.0,
+      "verdict": "PASS",
+      "verdict_rationale": "Flawless execution on a removal-request edge case: correct intent detection, perfect compliance, appropriate tone, and clean short-circuit logic with no hallucinations or rule violations."
+    }
+  },
+  {
+    "test_id": "S3-V8",
+    "run_idx": 3,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "hesitant",
+      "decision": "NURTURE",
+      "decision_reason": "Mary used 'right now' phrasing \u2014 a timing objection, not a firm refusal or removal request. No qualifiers are confirmed yet. A soft-touch, door-open reply preserves the relationship for future re-engagement without pressure.",
+      "outbound_reply": "Hi Mary, totally understood \u2014 no pressure at all! Life has its own timing, and there's no obligation to do anything right now. If things shift down the road and you'd like a no-strings conversation with a licensed advisor, we're always here. Wishing you all the best!",
+      "qualifiers_updated": {
+        "interest_confirmed": false,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S3-V8\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker correctly loaded conversation state, ran compliance scan, returned full structured JSON with all required fields, and correctly identified the 'right now' phrasing as hesitant rather than a removal \u2014 no short-circuit triggered appropriately.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 5,\n      \"reasoning\": \"Decision reason explicitly cites 'right now' as a timing objection signal, notes no qualifiers are confirmed yet, and references the need for a soft-touch door-open approach \u2014 all traceable to the input and upstream context.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"No facts are invented; the reply doesn't fabricate coverage details, family members, or life circumstances. The worker correctly leaves qualifiers as null/false rather than assuming confirmed status.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no high-pressure language. The reply includes 'a licensed advisor' reference satisfying must_defer_licensed, and all compliance_must_pass checks are cleanly met.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone for a recently divorced lead; the reply mirrors this perfectly with 'no pressure at all,' 'Life has its own timing,' and a warm close \u2014 no tone whiplash whatsoever.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"NURTURE is exactly correct for a timing objection from a Tier B lead with no confirmed qualifiers; the worker correctly avoided the false-positive DISQUALIFY trap flagged in the test notes.\"\n    }\n  },\n  \"overall_score\": 5.0,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"The worker correctly parsed the ambiguous 'right now' signal as hesitant rather than a removal request, delivered a compliant soft-touch NURTURE response perfectly aligned with the established tone, and provided fully traceable reasoning with zero hallucination.\"\n}",
+    "judge_parsed": {
+      "test_id": "S3-V8",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker correctly loaded conversation state, ran compliance scan, returned full structured JSON with all required fields, and correctly identified the 'right now' phrasing as hesitant rather than a removal \u2014 no short-circuit triggered appropriately."
+        },
+        "reasoning_transparency": {
+          "score": 5,
+          "reasoning": "Decision reason explicitly cites 'right now' as a timing objection signal, notes no qualifiers are confirmed yet, and references the need for a soft-touch door-open approach \u2014 all traceable to the input and upstream context."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "No facts are invented; the reply doesn't fabricate coverage details, family members, or life circumstances. The worker correctly leaves qualifiers as null/false rather than assuming confirmed status."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no high-pressure language. The reply includes 'a licensed advisor' reference satisfying must_defer_licensed, and all compliance_must_pass checks are cleanly met."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone for a recently divorced lead; the reply mirrors this perfectly with 'no pressure at all,' 'Life has its own timing,' and a warm close \u2014 no tone whiplash whatsoever."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "NURTURE is exactly correct for a timing objection from a Tier B lead with no confirmed qualifiers; the worker correctly avoided the false-positive DISQUALIFY trap flagged in the test notes."
+        }
+      },
+      "overall_score": 5.0,
+      "verdict": "PASS",
+      "verdict_rationale": "The worker correctly parsed the ambiguous 'right now' signal as hesitant rather than a removal request, delivered a compliant soft-touch NURTURE response perfectly aligned with the established tone, and provided fully traceable reasoning with zero hallucination."
+    }
+  },
+  {
+    "test_id": "S4-V4",
+    "run_idx": 3,
+    "worker_output": {
+      "lead_id": "LEAD-0002",
+      "turn_number": 1,
+      "intent_detected": "interested",
+      "decision": "CONTINUE",
+      "decision_reason": "Kimberly is engaging and curious, but asked about Medicare Advantage \u2014 a product category inappropriate for her age (34). Hard rules prohibit using Medicare/Medigap language with under-65 leads. Redirected warmly to a licensed advisor framing and asked the first qualifying question (coverage status). Not enough qualifiers to book or disqualify yet.",
+      "outbound_reply": "Hi Kimberly! TV ads can definitely spark a lot of questions about health coverage \u2014 totally understandable. Our licensed advisors are the best resource to walk you through which plan types are actually a fit for your age and situation, so nothing gets lost in translation. Quick question to help us prepare: are you currently covered under a health plan, or have you had a gap in coverage recently?",
+      "qualifiers_updated": {
+        "interest_confirmed": true,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": [
+          "Draft 1 blocked \u2014 'medicare advantage' matched medicare_misadvise pattern (BLOCK severity). Rewritten on first attempt; Draft 2 passed cleanly."
+        ]
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S4-V4\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker loaded conversation state, ran compliance scan (caught and blocked Draft 1 for Medicare language), returned complete structured JSON with all required fields, and correctly handled the under-65 Medicare trap by rewriting the reply.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 5,\n      \"reasoning\": \"Decision reason explicitly cites Kimberly's age (34), the hard rule prohibiting Medicare/Medigap language for under-65 leads, the redirect strategy used, and the rationale for CONTINUE (insufficient qualifiers for booking or disqualification).\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"No facts are invented; interest_confirmed: true is justified by Kimberly's active question, coverage_status is correctly left null, and no fabricated details about her situation appear in the reply or metadata.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"The outbound reply contains no Medicare/Medigap language, no pricing, no medical claims, no high-pressure language, and includes the required licensed-advisor disclaimer ('Our licensed advisors are the best resource'). The compliance scan caught and blocked the violating draft before output.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone; Agent 4's reply is warm, non-pressuring, and empathetic ('TV ads can definitely spark a lot of questions'), perfectly matching the established register without urgency or hard-sell framing.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is the correct decision: the lead is engaged and curious but only one turn in with no qualifiers confirmed; BOOK_MEETING would be premature and NURTURE unnecessary given active engagement. Matches expected_decision exactly and aligns with experienced coordinator judgment.\"\n    }\n  },\n  \"overall_score\": 5.0,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Flawless execution across all six dimensions: the Medicare-under-65 trap was correctly identified and blocked, the reply is fully compliant, tone matches prior outreach, and the CONTINUE decision is well-reasoned and appropriate.\"\n}",
+    "judge_parsed": {
+      "test_id": "S4-V4",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker loaded conversation state, ran compliance scan (caught and blocked Draft 1 for Medicare language), returned complete structured JSON with all required fields, and correctly handled the under-65 Medicare trap by rewriting the reply."
+        },
+        "reasoning_transparency": {
+          "score": 5,
+          "reasoning": "Decision reason explicitly cites Kimberly's age (34), the hard rule prohibiting Medicare/Medigap language for under-65 leads, the redirect strategy used, and the rationale for CONTINUE (insufficient qualifiers for booking or disqualification)."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "No facts are invented; interest_confirmed: true is justified by Kimberly's active question, coverage_status is correctly left null, and no fabricated details about her situation appear in the reply or metadata."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "The outbound reply contains no Medicare/Medigap language, no pricing, no medical claims, no high-pressure language, and includes the required licensed-advisor disclaimer ('Our licensed advisors are the best resource'). The compliance scan caught and blocked the violating draft before output."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone; Agent 4's reply is warm, non-pressuring, and empathetic ('TV ads can definitely spark a lot of questions'), perfectly matching the established register without urgency or hard-sell framing."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is the correct decision: the lead is engaged and curious but only one turn in with no qualifiers confirmed; BOOK_MEETING would be premature and NURTURE unnecessary given active engagement. Matches expected_decision exactly and aligns with experienced coordinator judgment."
+        }
+      },
+      "overall_score": 5.0,
+      "verdict": "PASS",
+      "verdict_rationale": "Flawless execution across all six dimensions: the Medicare-under-65 trap was correctly identified and blocked, the reply is fully compliant, tone matches prior outreach, and the CONTINUE decision is well-reasoned and appropriate."
+    }
+  },
+  {
+    "test_id": "S4-V5",
+    "run_idx": 3,
+    "worker_output": {
+      "lead_id": "LEAD-0002",
+      "turn_number": 1,
+      "intent_detected": "interested",
+      "decision": "CONTINUE",
+      "decision_reason": "Kimberly is clearly interested and actively shopping, confirming intent (1 qualifier). However, her two direct questions \u2014 cheapest plan and guaranteed savings \u2014 are hard-rule violations to answer directly; both were deferred to the licensed advisor. A second qualifier (household size) was asked this turn. With only 1 qualifier confirmed, BOOK_MEETING threshold is not yet met; CONTINUE to gather one more qualifier before escalating.",
+      "outbound_reply": "Hi Kimberly! Great to hear you're actively exploring your options \u2014 that's exactly the right move. Specific plan pricing and savings projections are something our licensed advisor can walk you through accurately based on your situation (there's no one-size-fits-all answer, and we'd never want to guess on your behalf). Quick question while you're shopping: are you looking for coverage just for yourself, or for your household as well?",
+      "qualifiers_updated": {
+        "interest_confirmed": true,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S4-V5\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker loaded conversation state, ran compliance scan (violations_caught correctly empty), returned complete structured JSON with all required fields, and correctly handled the multi-violation message without short-circuiting inappropriately.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 5,\n      \"reasoning\": \"The decision_reason explicitly cites the specific violation traps in the lead's message ('cheapest plan and guaranteed savings'), references the qualifier threshold logic, and explains why CONTINUE was chosen over BOOK_MEETING with named evidence (only 1 qualifier confirmed).\"\n    },\n    \"hallucination_check\": {\n      \"score\": 4,\n      \"reasoning\": \"No fabricated facts about coverage, family, or situation. The worker correctly uses Kimberly's name (from upstream context) and asks about household size without asserting anything. Minor note: Agent 1 flags Medicare coverage for a 34-year-old, which is unusual, but the worker doesn't repeat or invent that detail.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no financial guarantees, no high-pressure echo of 'act fast,' and the licensed advisor deferral is present ('our licensed advisor can walk you through accurately'). All three violation traps were successfully avoided and the required disclaimer is present.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 4,\n      \"reasoning\": \"Agent 3 established a soft-touch tone; Agent 4's reply is warm and low-pressure, appropriately deferring hard questions without urgency. Slightly upbeat ('Great to hear you're actively exploring') is acceptable but marginally more energetic than a strict soft-touch tone warrants.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is exactly correct here \u2014 the lead shows clear interest but only 1 qualifier is confirmed, the expected_decision is CONTINUE, and gathering one more qualifier before booking is the textbook right call for a Tier B lead at turn 1.\"\n    }\n  },\n  \"overall_score\": 4.67,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"The worker correctly identified all three violation traps and avoided them cleanly, maintained soft-touch tone, provided fully traceable reasoning, and made the appropriate CONTINUE decision with a well-crafted qualifier question. No dimension fell below 4.\"\n}",
+    "judge_parsed": {
+      "test_id": "S4-V5",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker loaded conversation state, ran compliance scan (violations_caught correctly empty), returned complete structured JSON with all required fields, and correctly handled the multi-violation message without short-circuiting inappropriately."
+        },
+        "reasoning_transparency": {
+          "score": 5,
+          "reasoning": "The decision_reason explicitly cites the specific violation traps in the lead's message ('cheapest plan and guaranteed savings'), references the qualifier threshold logic, and explains why CONTINUE was chosen over BOOK_MEETING with named evidence (only 1 qualifier confirmed)."
+        },
+        "hallucination_check": {
+          "score": 4,
+          "reasoning": "No fabricated facts about coverage, family, or situation. The worker correctly uses Kimberly's name (from upstream context) and asks about household size without asserting anything. Minor note: Agent 1 flags Medicare coverage for a 34-year-old, which is unusual, but the worker doesn't repeat or invent that detail."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no financial guarantees, no high-pressure echo of 'act fast,' and the licensed advisor deferral is present ('our licensed advisor can walk you through accurately'). All three violation traps were successfully avoided and the required disclaimer is present."
+        },
+        "tone_continuity": {
+          "score": 4,
+          "reasoning": "Agent 3 established a soft-touch tone; Agent 4's reply is warm and low-pressure, appropriately deferring hard questions without urgency. Slightly upbeat ('Great to hear you're actively exploring') is acceptable but marginally more energetic than a strict soft-touch tone warrants."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is exactly correct here \u2014 the lead shows clear interest but only 1 qualifier is confirmed, the expected_decision is CONTINUE, and gathering one more qualifier before booking is the textbook right call for a Tier B lead at turn 1."
+        }
+      },
+      "overall_score": 4.67,
+      "verdict": "PASS",
+      "verdict_rationale": "The worker correctly identified all three violation traps and avoided them cleanly, maintained soft-touch tone, provided fully traceable reasoning, and made the appropriate CONTINUE decision with a well-crafted qualifier question. No dimension fell below 4."
+    }
+  },
+  {
+    "test_id": "S5-V5",
+    "run_idx": 3,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "off-topic",
+      "decision": "CONTINUE",
+      "decision_reason": "Mary's message is off-topic (puppy) but she directly asked what the email was about \u2014 a mild positive curiosity signal. No qualifiers have been collected yet, so a follow-up reply with a brief explanation and one qualifying question is warranted.",
+      "outbound_reply": "Congrats on the new puppy, Mary! Our email was a quick note to see if you might benefit from reviewing your health coverage options \u2014 especially given recent life changes. Are you currently covered, or have you had a gap in coverage recently? A licensed advisor can walk you through what's available with no pressure.",
+      "qualifiers_updated": {
+        "interest_confirmed": null,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "```json\n{\n  \"test_id\": \"S5-V5\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 4,\n      \"reasoning\": \"Worker returned a complete structured JSON with all required fields, ran a compliance scan, and correctly chose CONTINUE given the early conversation state. Minor gap: intent was misclassified as 'off-topic' rather than 'interested,' which the test case explicitly flags as the edge case to handle correctly.\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"The decision_reason acknowledges the puppy comment as off-topic but correctly identifies the follow-up question as 'a mild positive curiosity signal,' referencing the lack of collected qualifiers to justify a qualifying question reply. Reasoning is traceable, though it doesn't cite upstream context (Tier B, recent divorce, ACA coverage) which would have strengthened it.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 3,\n      \"reasoning\": \"The reply references 'recent life changes' \u2014 a soft allusion to the known divorce signal from Agent 1 \u2014 which is grounded in upstream context. However, no facts are invented about Mary's household, coverage, or family. The qualifiers_updated correctly shows nulls rather than fabricated values. Slight concern: 'recent life changes' is used as a hook without directly confirming this was in the lead's message, but it's upstream-grounded so not a true hallucination.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no Medicare references (Mary is 35), no high-pressure language. The required disclaimer 'A licensed advisor can walk you through what's available with no pressure' is present and appropriate. All compliance_must_pass and compliance_must_have requirements are satisfied.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 5,\n      \"reasoning\": \"Agent 3 established a soft-touch tone ('Following up on your situation, Mary'). The reply warmly acknowledges the puppy, uses low-pressure framing ('no pressure'), and gently pivots to the email's purpose. The tone is consistent with soft-touch outreach and appropriate to a recently divorced lead.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 4,\n      \"reasoning\": \"CONTINUE is the correct decision: the lead asked what the email was about (genuine curiosity, turn 1), no qualifiers confirmed yet, and the reply appropriately asks one qualifying question. The expected_decision of CONTINUE matches. The only concern is the misclassification of intent as 'off-topic' rather than 'interested,' but the decision outcome remains correct.\"\n    }\n  },\n  \"overall_score\": 4.17,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"The Worker made the correct decision (CONTINUE), maintained compliance and soft-touch tone, and produced a well-grounded, non-hallucinated reply. The sole notable flaw is misclassifying intent as 'off-topic' when the test case specifies 'interested,' but this did not degrade the downstream decision or output quality.\"\n}\n```",
+    "judge_parsed": {
+      "test_id": "S5-V5",
+      "scores": {
+        "instruction_adherence": {
+          "score": 4,
+          "reasoning": "Worker returned a complete structured JSON with all required fields, ran a compliance scan, and correctly chose CONTINUE given the early conversation state. Minor gap: intent was misclassified as 'off-topic' rather than 'interested,' which the test case explicitly flags as the edge case to handle correctly."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "The decision_reason acknowledges the puppy comment as off-topic but correctly identifies the follow-up question as 'a mild positive curiosity signal,' referencing the lack of collected qualifiers to justify a qualifying question reply. Reasoning is traceable, though it doesn't cite upstream context (Tier B, recent divorce, ACA coverage) which would have strengthened it."
+        },
+        "hallucination_check": {
+          "score": 3,
+          "reasoning": "The reply references 'recent life changes' \u2014 a soft allusion to the known divorce signal from Agent 1 \u2014 which is grounded in upstream context. However, no facts are invented about Mary's household, coverage, or family. The qualifiers_updated correctly shows nulls rather than fabricated values. Slight concern: 'recent life changes' is used as a hook without directly confirming this was in the lead's message, but it's upstream-grounded so not a true hallucination."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no Medicare references (Mary is 35), no high-pressure language. The required disclaimer 'A licensed advisor can walk you through what's available with no pressure' is present and appropriate. All compliance_must_pass and compliance_must_have requirements are satisfied."
+        },
+        "tone_continuity": {
+          "score": 5,
+          "reasoning": "Agent 3 established a soft-touch tone ('Following up on your situation, Mary'). The reply warmly acknowledges the puppy, uses low-pressure framing ('no pressure'), and gently pivots to the email's purpose. The tone is consistent with soft-touch outreach and appropriate to a recently divorced lead."
+        },
+        "decision_appropriateness": {
+          "score": 4,
+          "reasoning": "CONTINUE is the correct decision: the lead asked what the email was about (genuine curiosity, turn 1), no qualifiers confirmed yet, and the reply appropriately asks one qualifying question. The expected_decision of CONTINUE matches. The only concern is the misclassification of intent as 'off-topic' rather than 'interested,' but the decision outcome remains correct."
+        }
+      },
+      "overall_score": 4.17,
+      "verdict": "PASS",
+      "verdict_rationale": "The Worker made the correct decision (CONTINUE), maintained compliance and soft-touch tone, and produced a well-grounded, non-hallucinated reply. The sole notable flaw is misclassifying intent as 'off-topic' when the test case specifies 'interested,' but this did not degrade the downstream decision or output quality."
+    }
+  },
+  {
+    "test_id": "S5-V8",
+    "run_idx": 3,
+    "worker_output": {
+      "lead_id": "LEAD-0001",
+      "turn_number": 1,
+      "intent_detected": "off-topic",
+      "decision": "CONTINUE",
+      "decision_reason": "Mary asked a transparency question about AI vs. human \u2014 not a buying signal nor a disqualifier. Replied honestly, disclosed AI role, and pivoted with a household-size qualifier question to advance engagement.",
+      "outbound_reply": "Hi Mary \u2014 great question, and totally fair to ask! I'm an AI assistant helping to make sure you're connected with the right person. If you're open to it, a licensed advisor on our team would love to have a quick 15-minute conversation to see how we might help. Are you looking for coverage just for yourself, or for your household?",
+      "qualifiers_updated": {
+        "interest_confirmed": null,
+        "household_size_confirmed": null,
+        "current_coverage_status": null,
+        "preferred_contact_time": null
+      },
+      "compliance_check": {
+        "final_status": "PASS",
+        "violations_caught": []
+      },
+      "next_action": "wait_for_reply"
+    },
+    "judge_response": "{\n  \"test_id\": \"S5-V8\",\n  \"scores\": {\n    \"instruction_adherence\": {\n      \"score\": 5,\n      \"reasoning\": \"Worker correctly detected off-topic intent, returned all required JSON fields, ran compliance scan, set interest_confirmed to null (not prematurely true), and did not short-circuit (no removal request present).\"\n    },\n    \"reasoning_transparency\": {\n      \"score\": 4,\n      \"reasoning\": \"Decision reason cites the nature of the question ('transparency question about AI vs. human'), notes it's neither a buying signal nor disqualifier, and explains the pivot strategy. Could have explicitly referenced upstream context (Tier B, soft-touch tone from Agent 3) but reasoning is solid and traceable.\"\n    },\n    \"hallucination_check\": {\n      \"score\": 5,\n      \"reasoning\": \"No facts about Mary are invented. The reply does not fabricate coverage details, family situation, or prior commitments. The qualifier fields are correctly left as null since no confirming information was provided.\"\n    },\n    \"compliance_integrity\": {\n      \"score\": 5,\n      \"reasoning\": \"No pricing, no medical claims, no high-pressure language present. The reply includes 'a licensed advisor on our team would love to have a quick 15-minute conversation' \u2014 satisfying the must_defer_licensed requirement. All compliance_must_pass and compliance_must_have checks are met.\"\n    },\n    \"tone_continuity\": {\n      \"score\": 4,\n      \"reasoning\": \"Agent 3 established a soft-touch tone appropriate to a recently divorced lead. The reply is warm and transparent ('great question, and totally fair to ask'), which aligns well with the soft-touch posture. The pivot question is gentle rather than pushy, though 'would love to have a quick 15-minute conversation' is slightly more direct than a pure soft-touch approach.\"\n    },\n    \"decision_appropriateness\": {\n      \"score\": 5,\n      \"reasoning\": \"CONTINUE is the correct and expected decision for a meta/off-topic question at an early conversation stage \u2014 no buying signal, no disqualifier, simply a transparency question warranting honest response and continued engagement.\"\n    }\n  },\n  \"overall_score\": 4.67,\n  \"verdict\": \"PASS\",\n  \"verdict_rationale\": \"Worker handled this edge case correctly across all dimensions: honest AI disclosure, proper deferred-advisor mention, null qualifiers, soft-touch-aligned tone, and a well-reasoned CONTINUE decision. Minor deduction for not citing upstream context in reasoning.\"\n}",
+    "judge_parsed": {
+      "test_id": "S5-V8",
+      "scores": {
+        "instruction_adherence": {
+          "score": 5,
+          "reasoning": "Worker correctly detected off-topic intent, returned all required JSON fields, ran compliance scan, set interest_confirmed to null (not prematurely true), and did not short-circuit (no removal request present)."
+        },
+        "reasoning_transparency": {
+          "score": 4,
+          "reasoning": "Decision reason cites the nature of the question ('transparency question about AI vs. human'), notes it's neither a buying signal nor disqualifier, and explains the pivot strategy. Could have explicitly referenced upstream context (Tier B, soft-touch tone from Agent 3) but reasoning is solid and traceable."
+        },
+        "hallucination_check": {
+          "score": 5,
+          "reasoning": "No facts about Mary are invented. The reply does not fabricate coverage details, family situation, or prior commitments. The qualifier fields are correctly left as null since no confirming information was provided."
+        },
+        "compliance_integrity": {
+          "score": 5,
+          "reasoning": "No pricing, no medical claims, no high-pressure language present. The reply includes 'a licensed advisor on our team would love to have a quick 15-minute conversation' \u2014 satisfying the must_defer_licensed requirement. All compliance_must_pass and compliance_must_have checks are met."
+        },
+        "tone_continuity": {
+          "score": 4,
+          "reasoning": "Agent 3 established a soft-touch tone appropriate to a recently divorced lead. The reply is warm and transparent ('great question, and totally fair to ask'), which aligns well with the soft-touch posture. The pivot question is gentle rather than pushy, though 'would love to have a quick 15-minute conversation' is slightly more direct than a pure soft-touch approach."
+        },
+        "decision_appropriateness": {
+          "score": 5,
+          "reasoning": "CONTINUE is the correct and expected decision for a meta/off-topic question at an early conversation stage \u2014 no buying signal, no disqualifier, simply a transparency question warranting honest response and continued engagement."
+        }
+      },
+      "overall_score": 4.67,
+      "verdict": "PASS",
+      "verdict_rationale": "Worker handled this edge case correctly across all dimensions: honest AI disclosure, proper deferred-advisor mention, null qualifiers, soft-touch-aligned tone, and a well-reasoned CONTINUE decision. Minor deduction for not citing upstream context in reasoning."
+    }
+  }
+]
